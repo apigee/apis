@@ -11,7 +11,7 @@ entities:
     allOf:
     - $ref: '#/entities/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Page]
       items:
@@ -49,7 +49,7 @@ entities:
     allOf:
     - $ref: '#/entities/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Collection]
       items:
@@ -91,10 +91,10 @@ entities:
         type: string
         format: uri
         usage: c r u
-      kind:
+      isA:
         description: >
-          Specifies the type of the entity. We avoid the word type because it's a global function in some programing languages, and we don't want name collisions. Kind is usually set by the 
-          client and then echo'd by the server. In most applications, kind is immutable after create, although some applications may allow change. 
+          Specifies the type of the entity. We avoid the word type because it's a global function in some programing languages, and we don't want name collisions. isA is usually set by the 
+          client and then echo'd by the server. In most applications, isA is immutable after create, although some applications may allow change. 
         type: string
         usage: c r u
   PersistentResource:

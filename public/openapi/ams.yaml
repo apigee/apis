@@ -1186,7 +1186,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of
           the object. Its value must be the string "API"
         type: string
@@ -1247,7 +1247,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of
           the object. Its value must be the string "APIProduct"
         type: string
@@ -1301,7 +1301,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of
           the object. Its value must be the string "APIProduct"
         type: string
@@ -1352,7 +1352,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of
           the object. Its value must be the string "Subscription"
         type: string
@@ -1528,7 +1528,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Collection
@@ -1541,7 +1541,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Page
@@ -1575,11 +1575,11 @@ definitions:
           \ It is permissible, although unusual, to update the value of self.\n"
         type: string
         format: uri
-      kind:
+      isA:
         description: "Specifies the type of the entity. We avoid the word type because\
           \ it's a global function in some programing languages, and we don't want\
-          \ name collisions. Kind is usually set by the  client and then echo'd by\
-          \ the server. In most applications, kind is immutable after create, although\
+          \ name collisions. isA is usually set by the  client and then echo'd by\
+          \ the server. In most applications, isA is immutable after create, although\
           \ some applications may allow change. \n"
         type: string
 parameters:

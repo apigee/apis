@@ -832,7 +832,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Environment
@@ -848,7 +848,7 @@ definitions:
     properties:
       name:
         type: string
-      kind:
+      isA:
         type: string
         enum:
         - Keystore
@@ -862,7 +862,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Alias
@@ -910,7 +910,7 @@ definitions:
   Pkcs12Alias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Pkcs12Alias
@@ -926,7 +926,7 @@ definitions:
   SelfSignedCertAlias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - SelfSignedCertAlias
@@ -949,7 +949,7 @@ definitions:
   KeyCertFileAlias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - KeyFileCertFileAlias
@@ -968,7 +968,7 @@ definitions:
   KeyCertJarAlias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - KeyFileCertFileAlias
@@ -1022,13 +1022,13 @@ definitions:
     properties:
       self:
         type: string
-      kind:
+      isA:
         type: string
   Collection:
     allOf:
     - $ref: '#/definitions/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Collection

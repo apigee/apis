@@ -14,7 +14,7 @@ entities:
     allOf:
     - $ref: '#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Environment]
       keystores:
@@ -31,7 +31,7 @@ entities:
     properties:
       name:
         type: string
-      kind:
+      isA:
         type: string
         enum: [Keystore]
       aliases:
@@ -49,7 +49,7 @@ entities:
     allOf:
     - $ref: '#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Alias]
       name:
@@ -95,7 +95,7 @@ entities:
   Pkcs12Alias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum: [Pkcs12Alias]
       name:
@@ -110,7 +110,7 @@ entities:
   SelfSignedCertAlias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum: [SelfSignedCertAlias]
       alias:
@@ -132,7 +132,7 @@ entities:
   KeyCertFileAlias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum: [KeyFileCertFileAlias]
       name:
@@ -150,7 +150,7 @@ entities:
   KeyCertJarAlias:
     type: object
     properties:
-      kind:
+      isA:
         type: string
         enum: [KeyFileCertFileAlias]
       name:
@@ -203,13 +203,13 @@ entities:
     properties:
       self:
         type: string
-      kind:
+      isA:
         type: string
   Collection:
     allOf:
     - $ref: '#/entities/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Collection]
       items:

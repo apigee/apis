@@ -10,7 +10,7 @@ entities:
     allOf:
     - '$ref': './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of the object. Its value must be the string "API"
         type: string
         enum: [API]
@@ -58,7 +58,7 @@ entities:
     allOf:
     - '$ref': ./common.yaml/#/entities/PersistentResource
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of the object. Its value must be the string "APIProduct"
         type: string
         enum: [APIProduct]
@@ -102,7 +102,7 @@ entities:
     allOf:
     - $ref: ./common.yaml/#/entities/PersistentResource
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of the object. Its value must be the string "APIProduct"
         type: string
         enum: [APIProduct]
@@ -144,7 +144,7 @@ entities:
     allOf:
     - $ref: ./common.yaml/#/entities/PersistentResource
     properties:
-      kind:
+      isA:
         description: The value of this property indicates the 'kind' or 'type' of the object. Its value must be the string "Subscription"
         type: string
         enum: [Subscription]
