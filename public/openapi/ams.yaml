@@ -1469,6 +1469,7 @@ definitions:
         - day
         - month
   Apigee:
+    x-interface: '#/x-interfaces/Apigee'
     readOnly: true
     properties:
       apiProducts:
@@ -1491,7 +1492,6 @@ definitions:
         type: string
         readOnly: true
         x-interface: '#/x-interfaces/Apigee.apis'
-    x-interface: '#/x-interfaces/Apigee'
   MultiValuedRelationship:
     readOnly: true
     x-oneOf:

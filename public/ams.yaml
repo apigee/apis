@@ -231,7 +231,7 @@ entities:
         type: string
         enum: [second, minute, hour, day, month]     
   Apigee:
-#    id: ./common.yaml#Apigee
+    id: ./common.yaml#Apigee
     readOnly: true
     well_known_URLs: /
     query_paths: apiProducts apis subscriptions bundles
