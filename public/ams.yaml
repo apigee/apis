@@ -40,7 +40,7 @@ entities:
         items:
           type: string
           format: uri
-          relationship: './deployment.yaml#Environment'
+          relationship: 'deployment.yaml#Environment'
       ui_proxiesProvidingPaths:
         description: > 
           The API is specified by the uriPaths property, which defines the paths of the API. As a convenience, the UI allows the uriPaths
@@ -95,7 +95,7 @@ entities:
       ratePlan:
         type: string
         format: uri
-        relationship: ./mint.yaml#RatePlan
+        relationship: mint.yaml#RatePlan
   Bundle:
     description: >
       Bundles allow providers to offer a set of APIProducts under a new ratePlan
@@ -131,7 +131,7 @@ entities:
         description: The ratePlan for the bundle. Overrides the individual ratePlans in the APIProducts
         type: string
         format: uri
-        relationship: ./mint.yaml#RatePlan
+        relationship: mint.yaml#RatePlan
   Subscription:
     description: >
       Subscriptions record the usage of an <a href="#APIProduct">APIProduct</a> or <a href="#Bundle">Bundle</a> by a
@@ -186,12 +186,12 @@ entities:
           The <a href="users/#User">User</a> or <a href="users/#Group">Group</a> or <a href="permissions/#Team">Team</a> responsible for the subscription. This person, or group of people, may get occasional emails, for example concerning quota overages, or subscriptions elapsing. 
         type: string
         format: uri
-        relationship: ./users.yaml#User ./users.yaml#Group ./permissions.yaml#Team
+        relationship: users.yaml#User users.yaml#Group permissions.yaml#Team
       account:
         description: The financial account to which the subscription should be charged. A POST or PATCH that contains a value for this property will fail if the user under whose credentials the call is made does not have permission to access the specified account 
         type: string
         format: uri
-        relationship: ./mint.yaml#Account
+        relationship: mint.yaml#Account
       approved:
         description: >
           Whether or not the subscription has been approved by the API owner 
