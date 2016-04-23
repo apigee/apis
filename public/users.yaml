@@ -1,0 +1,18 @@
+title: Users API
+entities:
+  User:
+    allOf:
+    - $ref: common.yaml#/entities/PersistentResource
+    properties:
+      email:
+        type: string
+  Group:
+    allOf:
+    - $ref: common.yaml#/entities/PersistentResource
+    properties:
+      users:
+        type: array
+        items:
+          type: string
+          format: uri
+          relationship: '#User'

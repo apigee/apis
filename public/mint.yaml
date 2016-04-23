@@ -1,0 +1,8 @@
+title: Mint API
+entities:
+  RatePlan:
+    allOf:
+    - $ref: common.yaml#/entities/PersistentResource
+  Account:
+    allOf:
+    - $ref: common.yaml#/entities/PersistentResource
