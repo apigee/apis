@@ -15,7 +15,7 @@ entities:
       
       The second Permissions entity in the array specifies who can access the first. The `governs` property of the second Permissions entity will contain the URL of the first Permissions entity. The
       second Permissons entity does not have a sharingSet property, but instead uses the sharingSet value of the first Permissions entity in its hierarchical search unioning permissions. The second Permissions
-      entity does not have creator/created/modifier/modified properties.<p>
+      entity does not have creator/created/modifier/modified properties. The second Permissions entity may be missing entirely—in that case the sharingSet permissions of the first Permissions document will be used.<p>
       
       For programming convenience, we will keep the first Permissions entity in the first position of the array and the second permissions entity in the second position of the array. However, it is
       easy to tell which is which without relying on the array position: the value of the `governs` property of the second will always match the value of the `self` property of the first, which will also match the URL
