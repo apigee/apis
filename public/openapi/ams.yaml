@@ -1180,7 +1180,7 @@ definitions:
   API:
     description: 'APIs define sets of HTTP URL paths available on the World-wide Web
       <p>Historical Note: The APIProduct concept in Apigee Edge (circa 2016) is an
-      amalgam of the API and APIProduct concepts
+      amalgam of the API and APIProduct concepts of AMS
 
       '
     allOf:

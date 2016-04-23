@@ -1,3 +1,4 @@
+id: https://apigee.com/apis/2
 title: API Management Service API
 description: >
   The API Management Service API defines an updated and refined version of the concepts currently known as Developer, APP, and API Product in Edge.
@@ -6,7 +7,7 @@ entities:
   API:
     description: >
       APIs define sets of HTTP URL paths available on the World-wide Web
-      <p>Historical Note: The APIProduct concept in Apigee Edge (circa 2016) is an amalgam of the API and APIProduct concepts
+      <p>Historical Note: The APIProduct concept in Apigee Edge (circa 2016) is an amalgam of the API and APIProduct concepts of AMS
     allOf:
     - '$ref': 'common.yaml/#/entities/PersistentResource'
     properties:

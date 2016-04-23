@@ -144,48 +144,45 @@ x-templates: {}
 paths: {}
 definitions:
   Permissions:
-    description: "A Permissions resource is a bit tricky to understand, so pay attention.\
-      \ The representation of this resource is an array containing two entities, both\
-      \ of them Permissions entities.<p>\nThe first of these Permissions entities\
-      \ controls who can do what to some other resource that belongs to some other\
-      \ Apigee microservice. The resource to which access is governed by this Permissions\
-      \ entity is called the \"governed resource\" and its URL is in the `governs`\
-      \ property of the Permissions entity. The `create`, `retrieve`, `update` and\
-      \ `delete` properties each (optionally) contain arrays of users, groups and\
-      \ teams that may perform the associated action on the governed resource. The\
-      \ Permissions service makes no assumptions about the governed resource\u2014\
-      it may not even exist. The value of `self` property of the first Permissions\
-      \ entity is the same as the URL of the enclosing resource, and the first Permissions\
-      \ entity has the typical creator/created/modifier/modified properties.<p>\n\
-      The first Permissions entity may also have a `sharingSets` property. If set,\
-      \ this property will contain an array (conceptually a set) of URLs. Each of\
-      \ these URLs may have its own Permissions entity in another Permissions document\
-      \ that grants access to that URL. The create/retrieve/update/delete values from\
-      \ those other Permissons entities are unioned with those of the current Permissions\
-      \ entity, recursively, to determine the total sharing permissions granted for\
-      \ the governed resource. The Permissions service makes no assumptions about\
-      \ the sharingSet resources\u2014they may not even exist.<p>\nThe second Permissions\
-      \ entity in the array specifies who can access the first. The `governs` property\
-      \ of the second Permissions entity will contain the URL of the first Permissions\
-      \ entity. The second Permissons entity does not have a sharingSet property,\
-      \ but instead uses the sharingSet value of the first Permissions entity in its\
-      \ hierarchical search unioning permissions. The second Permissions entity does\
-      \ not have creator/created/modifier/modified properties.<p>\nFor programming\
-      \ convenience, we will keep the first Permissions entity in the first position\
-      \ of the array and the second permissions entity in the second position of the\
-      \ array. However, it is easy to tell which is which without relying on the array\
-      \ position: the value of the `governs` property of the second will always match\
-      \ the value of the `self` property of the first, which will also match the URL\
-      \ of the enclosing resource. The value of the `self` property of the second\
-      \ will extend the value of the `self` property of the first by adding a fragment\
-      \ identifier. This ensures that a GET on either `self` value will always get\
-      \ to the same enclosing resource.\n"
-    type: array
-    items:
-      x-oneOf:
-      - $ref: '#/definitions/FirstPermissions'
-      - $ref: '#/definitions/SecondPermissions'
-  FirstPermissions:
+    description: "<p>A Permissions resource contains one Permissions entity nested\
+      \ inside another. The outer of these Permissions entities controls who can read,\
+      \ write, delete and create within some other resource that belongs to some other\
+      \ Apigee microservice. The nested Permissions entity controls who can read and\
+      \ alter the outer one.\nThe resource to which access is governed by this Permission\
+      \ entity is called the \"governed resource\"  and its URL is in the `governs`\
+      \ property of the outer Permissions entity. The `create`, `retrieve`, `update`\
+      \ and `delete` properties of the outer Permissions entity  each (optionally)\
+      \ contain arrays of users, groups and teams that may perform the associated\
+      \ action on the governed resource. The Permissions service makes no assumptions\
+      \ about the governed resource\u2014it may not even exist.  The value of the\
+      \ `self` property of the outer Permissions entity is the same as the URL of\
+      \ the enclosing resource,  and the outer Permissions entity has the typical\
+      \ creator/created/modifier/modified properties. <p> The outer Permissions entity\
+      \ may also have a `sharingSets` property. If set, this property will contain\
+      \ an array (conceptually a set) of URLs. Each of these URLs may have its own\
+      \ Permissions entity in another Permissions document that grants access to that\
+      \ URL. The create/retrieve/update/delete values from those other Permissons\
+      \ entities are unioned with those of the current Permissions entity, recursively,\
+      \ to determine the total sharing permissions granted for the governed resource.\
+      \ The Permissions service makes no assumptions about the sharingSet resources\
+      \ themselves\u2014they may not even exist, even though their Permissions documents\
+      \ do. <p> The outer Permissions entity may have a `permissions` property whose\
+      \ value is a nested Permissions entity. The nested Permissions entity specifies\
+      \ who can access the outer Permissions entity\u2014it is the Permissions for\
+      \ the Permissions.  The `governs` property of the nested Permissions entity\
+      \ will contain the URL of the outer Permissions entity. The nested Permissons\
+      \ entity does not have a sharingSet property, but instead uses the sharingSet\
+      \ value of the first Permissions  entity in its hierarchical search unioning\
+      \ permissions. The nested Permissions entity does not have creator/created/modifier/modified\
+      \ properties. The nested Permissions entity may be missing entirely\u2014in\
+      \ that case  the sharingSet permissions of the outer Permissions document will\
+      \ be used to determine who can change the outer Permission entity. When unioning\
+      \ permissions for the nested Permissions entity, the unioning is with the nested\
+      \ Permissions entities of the sharingSets, not the outer ones. <p> The value\
+      \ of the `self` property of the nested Permissions entity will extend the value\
+      \ of the `self` property of the first  by adding a fragment identifier. This\
+      \ ensures that a GET on either `self` value will always retrive the same enclosing\
+      \ resource.\n"
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
@@ -241,7 +238,9 @@ definitions:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
             - '#/x-interfaces/Team'
-  SecondPermissions:
+      permissions:
+        $ref: '#/definitions/PermissionsOfPermissions'
+  PermissionsOfPermissions:
     allOf:
     - $ref: '#/definitions/Resource'
     properties:
@@ -252,16 +251,6 @@ definitions:
       governs:
         type: string
         format: uri
-      create:
-        type: array
-        items:
-          type: string
-          format: uri
-          x-interface:
-            oneOf:
-            - users.yaml#/x-interfaces/User
-            - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
       retrieve:
         type: array
         items:
@@ -417,12 +406,6 @@ parameters:
     in: header
     name: If-Match
     required: true
-    type: string
-  Put-If-Match:
-    description: specifies the last known ETag value of the resource being modified
-    in: header
-    name: If-Match
-    required: false
     type: string
 responses:
   '400':
