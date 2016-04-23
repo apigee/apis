@@ -4,7 +4,8 @@ entities:
   Permissions:
     description: >
       <p>A Permissions resource contains one Permissions entity nested inside another.
-      The outer of these Permissions entities controls who can read, write, delete and create within some other resource that belongs to some other Apigee microservice.
+      The outer of these Permissions entities controls who can send GET, PUT/PATCH, POST and DELETE requests to some other 
+      resource that belongs to some other Apigee microservice.
       The nested Permissions entity controls who can read and alter the outer one.
       
       The resource to which access is governed by this Permission entity is called the "governed resource" 
@@ -19,18 +20,22 @@ entities:
       governed resource. The Permissions service makes no assumptions about the sharingSet resources themselves—they may not even exist, even though their Permissions documents do.
       <p>
       The outer Permissions entity may have a `permissions` property whose value is a nested Permissions entity.
-      The nested Permissions entity specifies who can access the outer Permissions entity—it is the Permissions for the Permissions. 
+      The nested Permissions entity specifies who can read, alter and delete the outer Permissions entity. 
       The `governs` property of the nested Permissions entity will contain the URL of the outer Permissions entity. The
       nested Permissons entity does not have a sharingSet property, but instead uses the sharingSet value of the first Permissions 
-      entity in its hierarchical search unioning permissions. The nested Permissions
+      entity in its hierarchical search unioning permissions. When unioning permissions for the nested Permissions entity,
+      the unioning is with the nested Permissions entities of the sharingSets, not the outer ones. The nested Permissions
       entity does not have creator/created/modifier/modified properties. The nested Permissions entity may be missing entirely—in that case 
-      the sharingSet permissions of the outer Permissions document will be used
-      to determine who can change the outer Permission entity. When unioning permissions for the nested Permissions entity,
-      the unioning is with the nested Permissions entities of the sharingSets, not the outer ones.
+      the sharingSet permissions of the outer Permissions document will be used to determine who can change the outer Permission entity.
       <p>
       The value of the `self` property of the nested Permissions entity will extend the value of the `self` property of the first 
       by adding a fragment identifier. This ensures that a GET
       on either `self` value will always retrive the same enclosing resource.
+      <p>
+      If no Permissions entity exists for a resource, it is ungoverned. Anyone can do anything to an ungoverned resource,
+      including creating a Permissions entity for it. When new resources are created by Apigee microservices, they should
+      always create a corresponding Permissions entity for it. The most common Permissions entity for a new resource will include the
+      new resource in a sharingset rather than assigning specific permissions. 
     allOf:
     - $ref: common.yaml#/entities/PersistentResource
     properties:
