@@ -114,7 +114,7 @@ entities:
     description: A space-delimited list of URLs
     type: string
   AllowedActions:
-    well_known_URLs: /allowedActions
+    well_known_URLs: /allowed-actions
     readOnly: true
     type: string
     query_parameters:
@@ -131,7 +131,7 @@ entities:
       format: uri
       required: true
   ActionIsAllowed:
-    well_known_URLs: /actionIsAllowed
+    well_known_URLs: /action-is-allowed
     readOnly: true
     type: boolean
     query_parameters:
@@ -167,6 +167,13 @@ entities:
           collection_resource: 'common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Permissions'        
+          query_parameters:
+          - name: resource
+            description: >
+              This query parameter specifies the "governed" resource whose Permissions reosurce is returned 
+            type: string
+            format: uri
+            required: true
       resources-shared-with:
         format: uri
         type: string

@@ -237,6 +237,13 @@ x-interfaces:
         name: orderBy
         required: false
         type: string
+      - description: "This query parameter specifies the \"governed\" resource whose\
+          \ Permissions reosurce is returned \n"
+        format: uri
+        in: query
+        name: resource
+        required: true
+        type: string
       - enum:
         - ascending
         - descending
@@ -816,9 +823,9 @@ x-templates:
   '{Apigee-URL}/users-who-can-see':
     $ref: users.yaml#/x-interfaces/Apigee.users-who-can-see
 paths:
-  /allowedActions:
+  /allowed-actions:
     $ref: '#/x-templates/{AllowedActions-URL}'
-  /actionIsAllowed:
+  /action-is-allowed:
     $ref: '#/x-templates/{ActionIsAllowed-URL}'
   /:
     $ref: '#/x-templates/{Apigee-URL}'
