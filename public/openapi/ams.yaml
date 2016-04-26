@@ -1340,15 +1340,14 @@ definitions:
   Subscription:
     description: "Subscriptions record the usage of an <a href=\"#APIProduct\">APIProduct</a>\
       \ or <a href=\"#Bundle\">Bundle</a> by a subscriber (a <a href=\"users/#User\"\
-      >User</a> or <a href=\"users/#Group\">Group</a> or <a href=\"permissions/#Team\"\
-      >Team</a>).  <p>Historical Note: The App concept in Apigee Edge (circa 2015)\
-      \ is similar to the Subscription concept, to the point where it can be considered\
-      \ a renaming. App was not the best choice of name because the concept  being\
-      \ modelled is not an app, it is just a key-protected usage of an APIProduct.\
-      \ Using one of these subscriptions per app is only a suggestion\u2014it is not\
-      \ possible to know whether customers use  a single subscription for a single\
-      \ app, a single subscription for many apps, or a many subscriptions for one\
-      \ app. \n"
+      >User</a> or <a href=\"users/#Group\">Group</a> or <a href=\"teams/#Team\">Team</a>).\
+      \  <p>Historical Note: The App concept in Apigee Edge (circa 2015) is similar\
+      \ to the Subscription concept, to the point where it can be considered a renaming.\
+      \ App was not the best choice of name because the concept  being modelled is\
+      \ not an app, it is just a key-protected usage of an APIProduct. Using one of\
+      \ these subscriptions per app is only a suggestion\u2014it is not possible to\
+      \ know whether customers use  a single subscription for a single app, a single\
+      \ subscription for many apps, or a many subscriptions for one app. \n"
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
@@ -1400,16 +1399,16 @@ definitions:
           $ref: '#/definitions/Key'
       subscriber:
         description: "The <a href=\"users/#User\">User</a> or <a href=\"users/#Group\"\
-          >Group</a> or <a href=\"permissions/#Team\">Team</a> responsible for the\
-          \ subscription. This person, or group of people, may get occasional emails,\
-          \ for example concerning quota overages, or subscriptions elapsing. \n"
+          >Group</a> or <a href=\"teams/#Team\">Team</a> responsible for the subscription.\
+          \ This person, or group of people, may get occasional emails, for example\
+          \ concerning quota overages, or subscriptions elapsing. \n"
         type: string
         format: uri
         x-interface:
           oneOf:
           - users.yaml#/x-interfaces/User
           - users.yaml#/x-interfaces/Group
-          - permissions.yaml#/x-interfaces/Team
+          - teams.yaml#/x-interfaces/Team
       account:
         description: The financial account to which the subscription should be charged.
           A POST or PATCH that contains a value for this property will fail if the

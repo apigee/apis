@@ -136,7 +136,7 @@ entities:
   Subscription:
     description: >
       Subscriptions record the usage of an <a href="#APIProduct">APIProduct</a> or <a href="#Bundle">Bundle</a> by a
-      subscriber (a <a href="users/#User">User</a> or <a href="users/#Group">Group</a> or <a href="permissions/#Team">Team</a>). 
+      subscriber (a <a href="users/#User">User</a> or <a href="users/#Group">Group</a> or <a href="teams/#Team">Team</a>). 
       <p>Historical Note: The App concept in Apigee Edge (circa 2015) is similar to the Subscription concept,
       to the point where it can be considered a renaming. App was not the best choice of name because the concept 
       being modelled is not an app, it is just a key-protected usage of an APIProduct. Using
@@ -184,10 +184,10 @@ entities:
           $ref: '#/entities/Key'
       subscriber:
         description: >
-          The <a href="users/#User">User</a> or <a href="users/#Group">Group</a> or <a href="permissions/#Team">Team</a> responsible for the subscription. This person, or group of people, may get occasional emails, for example concerning quota overages, or subscriptions elapsing. 
+          The <a href="users/#User">User</a> or <a href="users/#Group">Group</a> or <a href="teams/#Team">Team</a> responsible for the subscription. This person, or group of people, may get occasional emails, for example concerning quota overages, or subscriptions elapsing. 
         type: string
         format: uri
-        relationship: users.yaml#User users.yaml#Group permissions.yaml#Team
+        relationship: users.yaml#User users.yaml#Group teams.yaml#Team
       account:
         description: The financial account to which the subscription should be charged. A POST or PATCH that contains a value for this property will fail if the user under whose credentials the call is made does not have permission to access the specified account 
         type: string

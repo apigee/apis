@@ -78,6 +78,8 @@ entities:
       permissions:
         $ref: '#/entities/PermissionsOfPermissions'
   PermissionsOfPermissions:
+    description: >
+      PermissionsOfPermissions is a slightly more restricted version of the <a href="#Permissions">Permissions</a> resource used to psecify who can see and change permissions for a resource.
     allOf:
     - $ref: common.yaml#/entities/Resource
     properties:
@@ -127,14 +129,33 @@ entities:
           entities: '#Permissions'        
           query_parameters:
           - name: resource
+            description: >
+              This query parameter is used to form the URL of a collection of permissions for a specified "governed" resource. 
+              It will include the Permissions resource for the governed resurce itself, plus all the permissions resources
+              of sharingSets that the governed resource is in, recursively. Only Permissions resources that the requesting user has permission to read will be included. 
             type: string
             format: uri
             required: true
           - name: user
+            description: >
+              This query parameter is used to form the URL of a collection of permissions for a specified "governed" resource and a specified user. 
+              The response will include the Permissions resource for the governed resource itself, plus all the permissions resources
+              of sharingSets that the governed resource is in, recursively. Only permissions that reference the specified user, or a group that User is in will be included. 
+              If the requesting user is different from the user specified in the paramter, only Permissions resources that the requesting user has permission to read will be included.
+              If the requesting user is the same as the specified user, The request will return a "pruned" version of the Permissions resources showing the information pertinent to
+              that user. 
             type: string
             format: uri
             required: false
           - name: action
+            description: >
+              This query parameter is used to form the URL of a collection of permissions for a specified "governed" resource and a specified user. 
+              The response will include the Permissions resource for the governed resource itself, plus all the permissions resources
+              of sharingSets that the governed resource is in, recursively. Only Permissions that reference the specified user, or a group that User is in will be included. 
+              If the requesting user is different from the user specified in the parameter, only Permissions resources that the requesting user has permission to read will be included.
+              If the requesting user is the same as the specified user, The response will include only "pruned" versions of the Permissions resources showing the information pertinent to
+              that user. The rule is that users are always allowed to see the portion of information in a Permission document that references them, regardless of the genenral Permissions 
+              on the Permission document.
             type: string
             required: false
       resources-shared-with:
