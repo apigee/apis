@@ -45,6 +45,7 @@ entities:
       governs:
         type: string
         format: uri
+        usage: c
       sharingSets:
         type: array
         items:
@@ -86,6 +87,7 @@ entities:
       governs:
         type: string
         format: uri
+        usage: c
       retrieve:
         type: array
         items:
@@ -104,6 +106,11 @@ entities:
           type: string
           format: uri
           relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
+  Resource: 
+    readOnly: true
+  ResourceList:
+    description: A space-delimited list of URLs
+    type: string
   Apigee:
     id: common.yaml#Apigee
     readOnly: true
@@ -126,7 +133,22 @@ entities:
           - name: user
             type: string
             format: uri
-            required: true
+            required: false
           - name: action
             type: string
             required: false
+      resources-shared-with:
+        format: uri
+        type: string
+        readOnly: true
+        relationship:
+          entities: '#Resource'
+          multiplicity: 0:n
+          collection_resource: '#ResourceList'
+          readOnly: true
+          query_parameters:
+          - name: user
+            type: string
+            format: uri
+            required: true
+          

@@ -97,7 +97,7 @@ x-interfaces:
       - format: uri
         in: query
         name: user
-        required: true
+        required: false
         type: string
       - in: query
         name: action
@@ -203,6 +203,68 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Apigee.permissions
+  Apigee.resources-shared-with:
+    get:
+      parameters:
+      - format: uri
+        in: query
+        name: user
+        required: true
+        type: string
+      responses:
+        '200':
+          description: description
+          headers:
+            Content-Location:
+              description: perma-link URL of collection
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+          schema:
+            $ref: '#/definitions/ResourceList'
+        '303':
+          $ref: '#/responses/303'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: Retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
+      parameters:
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: Apigee.resources-shared-with
   Page:
     get:
       description: Retrieve a Page
@@ -407,6 +469,67 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Permissions
+  Resource:
+    get:
+      description: Retrieve a Resource
+      parameters:
+      - $ref: '#/parameters/Accept'
+      responses:
+        '200':
+          description: successful
+          headers:
+            Content-Location:
+              description: perma-link URL of resource
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+            ETag:
+              description: this value must be echoed in the If-Match header of every
+                PATCH or PUT
+              type: string
+          schema:
+            $ref: '#/definitions/Resource'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
+      parameters:
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: Resource
 x-templates:
   '{Apigee-URL}':
     $ref: '#/x-interfaces/Apigee'
@@ -563,20 +686,6 @@ definitions:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
             - teams.yaml#/x-interfaces/Team
-  Apigee:
-    x-interface: '#/x-interfaces/Apigee'
-    readOnly: true
-    properties:
-      permissions:
-        format: uri
-        type: string
-        readOnly: true
-        x-interface: '#/x-interfaces/Apigee.permissions'
-  MultiValuedRelationship:
-    readOnly: true
-    x-oneOf:
-    - $ref: '#/definitions/Collection'
-    - $ref: '#/definitions/Page'
   Resource:
     type: object
     properties:
@@ -597,6 +706,28 @@ definitions:
           \ the server. In most applications, isA is immutable after create, although\
           \ some applications may allow change. \n"
         type: string
+  ResourceList:
+    description: A space-delimited list of URLs
+    type: string
+  Apigee:
+    x-interface: '#/x-interfaces/Apigee'
+    readOnly: true
+    properties:
+      permissions:
+        format: uri
+        type: string
+        readOnly: true
+        x-interface: '#/x-interfaces/Apigee.permissions'
+      resources-shared-with:
+        format: uri
+        type: string
+        readOnly: true
+        x-interface: '#/x-interfaces/Apigee.resources-shared-with'
+  MultiValuedRelationship:
+    readOnly: true
+    x-oneOf:
+    - $ref: '#/definitions/Collection'
+    - $ref: '#/definitions/Page'
   PersistentResource:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -686,6 +817,12 @@ parameters:
     in: header
     name: If-Match
     required: true
+    type: string
+  Put-If-Match:
+    description: specifies the last known ETag value of the resource being modified
+    in: header
+    name: If-Match
+    required: false
     type: string
 responses:
   '303':
