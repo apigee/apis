@@ -33,7 +33,7 @@ entities:
       on either `self` value will always retrive the same enclosing resource.
       <p>
       If no Permissions entity exists for a resource, it is ungoverned. Anyone can do anything to an ungoverned resource,
-      including creating a Permissions entity for it. When new resources are created by Apigee microservices, they should
+      including creating a Permissions entity for it, thereby preventing others from accessing it. When new resources are created by Apigee microservices, they should
       always create a corresponding Permissions entity for it. The most common Permissions entity for a new resource will include the
       new resource in a sharingset rather than assigning specific permissions. 
     allOf:
@@ -55,25 +55,25 @@ entities:
         items:
           type: string
           format: uri
-          relationship: 'users.yaml#User users.yaml#Group #Team'
+          relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
       retrieve:
         type: array
         items:
           type: string
           format: uri
-          relationship: 'users.yaml#User users.yaml#Group #Team'
+          relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
       update:
         type: array
         items:
           type: string
           format: uri
-          relationship: 'users.yaml#User users.yaml#Group #Team'
+          relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
       delete:
         type: array
         items:
           type: string
           format: uri
-          relationship: 'users.yaml#User users.yaml#Group #Team'
+          relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
       permissions:
         $ref: '#/entities/PermissionsOfPermissions'
   PermissionsOfPermissions:
@@ -91,31 +91,42 @@ entities:
         items:
           type: string
           format: uri
-          relationship: 'users.yaml#User users.yaml#Group #Team'
+          relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
       update:
         type: array
         items:
           type: string
           format: uri
-          relationship: 'users.yaml#User users.yaml#Group #Team'
+          relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
       delete:
         type: array
         items:
           type: string
           format: uri
-          relationship: 'users.yaml#User users.yaml#Group #Team'
-  Team:
-    allOf:
-    - $ref: common.yaml#/entities/PersistentResource
+          relationship: 'users.yaml#User users.yaml#Group teams.yaml#Team'
+  Apigee:
+    id: common.yaml#Apigee
+    readOnly: true
+    well_known_URLs: /
+    query_paths: permissions
     properties:
-      kind:
+      permissions:
+        format: uri
         type: string
-        enum: [Team]
-      title:
-        type: string
-      users:
-        type: array
-        items:
-          type: string
-          format: uri
-          relationship: users.yaml#User      
+        readOnly: true
+        relationship:
+          collection_resource: 'common.yaml/#MultiValuedRelationship'
+          multiplicity: 0:n
+          entities: '#Permissions'        
+          query_parameters:
+          - name: resource
+            type: string
+            format: uri
+            required: true
+          - name: user
+            type: string
+            format: uri
+            required: true
+          - name: action
+            type: string
+            required: false

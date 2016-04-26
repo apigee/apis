@@ -8,9 +8,9 @@ produces:
 - application/json
 - text/html
 x-interfaces:
-  Team:
+  Apigee:
     get:
-      description: Retrieve a Team
+      description: Retrieve an Apigee
       parameters:
       - $ref: '#/parameters/Accept'
       responses:
@@ -28,7 +28,7 @@ x-interfaces:
                 PATCH or PUT
               type: string
           schema:
-            $ref: '#/definitions/Team'
+            $ref: '#/definitions/Apigee'
         '401':
           $ref: '#/responses/401'
         '403':
@@ -39,17 +39,186 @@ x-interfaces:
           $ref: '#/responses/406'
         default:
           $ref: '#/responses/default'
-    patch:
-      consumes:
-      - application/merge-patch+json
-      description: Update a Team entity
+    head:
+      description: retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
       parameters:
-      - $ref: '#/parameters/If-Match'
-      - description: The subset of properties of the Team being updated
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: Apigee
+  Apigee.permissions:
+    get:
+      parameters:
+      - in: query
+        name: orderBy
+        required: false
+        type: string
+      - enum:
+        - ascending
+        - descending
+        in: query
+        name: direction
+        required: false
+        type: string
+      - format: uri
+        in: query
+        name: resource
+        required: true
+        type: string
+      - in: query
+        maximum: 1000
+        minimum: 1
+        name: limit
+        required: false
+        type: integer
+      - format: uri
+        in: query
+        name: user
+        required: true
+        type: string
+      - in: query
+        name: action
+        required: false
+        type: string
+      - in: query
+        items:
+          type: string
+        name: properties
+        required: false
+        type: array
+      responses:
+        '200':
+          description: description
+          headers:
+            Content-Location:
+              description: perma-link URL of collection
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+          schema:
+            $ref: '#/definitions/MultiValuedRelationship'
+        '303':
+          $ref: '#/responses/303'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    post:
+      description: Create a new Permissions
+      parameters:
+      - description: The representation of the new Permissions being created
         in: body
         name: body
         schema:
-          $ref: '#/definitions/Team'
+          $ref: '#/definitions/Permissions'
+      - description: The media type of the body
+        in: header
+        name: Content-Type
+        required: true
+        type: string
+      responses:
+        '201':
+          description: Created new Permissions
+          headers:
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+            ETag:
+              description: Value of ETag required for subsequent updates
+              type: string
+            Location:
+              description: perma-link URL of newly-created Permissions
+              type: string
+          schema:
+            $ref: '#/definitions/Permissions'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: Retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
+      parameters:
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: Apigee.permissions
+  Page:
+    get:
+      description: Retrieve a Page
+      parameters:
+      - in: query
+        items:
+          type: string
+        name: properties
+        required: false
+        type: array
+      - in: query
+        maximum: 1000
+        minimum: 1
+        name: limit
+        required: false
+        type: integer
       responses:
         '200':
           description: successful
@@ -65,7 +234,105 @@ x-interfaces:
                 PATCH or PUT
               type: string
           schema:
-            $ref: '#/definitions/Team'
+            $ref: '#/definitions/Page'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
+      parameters:
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: Page
+  Permissions:
+    get:
+      description: Retrieve a Permissions
+      parameters:
+      - $ref: '#/parameters/Accept'
+      responses:
+        '200':
+          description: successful
+          headers:
+            Content-Location:
+              description: perma-link URL of resource
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+            ETag:
+              description: this value must be echoed in the If-Match header of every
+                PATCH or PUT
+              type: string
+          schema:
+            $ref: '#/definitions/Permissions'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    patch:
+      consumes:
+      - application/merge-patch+json
+      description: Update a Permissions entity
+      parameters:
+      - $ref: '#/parameters/If-Match'
+      - description: The subset of properties of the Permissions being updated
+        in: body
+        name: body
+        schema:
+          $ref: '#/definitions/Permissions'
+      responses:
+        '200':
+          description: successful
+          headers:
+            Content-Location:
+              description: perma-link URL of resource
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+            ETag:
+              description: this value must be echoed in the If-Match header of every
+                PATCH or PUT
+              type: string
+          schema:
+            $ref: '#/definitions/Permissions'
         '400':
           $ref: '#/responses/400'
         '401':
@@ -81,7 +348,7 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     delete:
-      description: Delete a Team
+      description: Delete a Permissions
       responses:
         '200':
           description: successful
@@ -97,7 +364,7 @@ x-interfaces:
                 PATCH or PUT
               type: string
           schema:
-            $ref: '#/definitions/Team'
+            $ref: '#/definitions/Permissions'
         '400':
           $ref: '#/responses/400'
         '401':
@@ -139,9 +406,17 @@ x-interfaces:
           $ref: '#/responses/404'
         default:
           $ref: '#/responses/default'
-    x-id: Team
-x-templates: {}
-paths: {}
+    x-id: Permissions
+x-templates:
+  '{Apigee-URL}':
+    $ref: '#/x-interfaces/Apigee'
+  '{Apigee-URL}/permissions':
+    $ref: '#/x-interfaces/Apigee.permissions'
+paths:
+  /:
+    $ref: '#/x-templates/{Apigee-URL}'
+  /permissions:
+    $ref: '#/x-templates/{Apigee-URL}~1permissions'
 definitions:
   Permissions:
     description: "<p>A Permissions resource contains one Permissions entity nested\
@@ -183,11 +458,12 @@ definitions:
       \  by adding a fragment identifier. This ensures that a GET on either `self`\
       \ value will always retrive the same enclosing resource. <p> If no Permissions\
       \ entity exists for a resource, it is ungoverned. Anyone can do anything to\
-      \ an ungoverned resource, including creating a Permissions entity for it. When\
-      \ new resources are created by Apigee microservices, they should always create\
-      \ a corresponding Permissions entity for it. The most common Permissions entity\
-      \ for a new resource will include the new resource in a sharingset rather than\
-      \ assigning specific permissions. \n"
+      \ an ungoverned resource, including creating a Permissions entity for it, thereby\
+      \ preventing others from accessing it. When new resources are created by Apigee\
+      \ microservices, they should always create a corresponding Permissions entity\
+      \ for it. The most common Permissions entity for a new resource will include\
+      \ the new resource in a sharingset rather than assigning specific permissions.\
+      \ \n"
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
@@ -212,7 +488,7 @@ definitions:
             oneOf:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
+            - teams.yaml#/x-interfaces/Team
       retrieve:
         type: array
         items:
@@ -222,7 +498,7 @@ definitions:
             oneOf:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
+            - teams.yaml#/x-interfaces/Team
       update:
         type: array
         items:
@@ -232,7 +508,7 @@ definitions:
             oneOf:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
+            - teams.yaml#/x-interfaces/Team
       delete:
         type: array
         items:
@@ -242,9 +518,10 @@ definitions:
             oneOf:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
+            - teams.yaml#/x-interfaces/Team
       permissions:
         $ref: '#/definitions/PermissionsOfPermissions'
+    x-interface: '#/x-interfaces/Permissions'
   PermissionsOfPermissions:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -265,7 +542,7 @@ definitions:
             oneOf:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
+            - teams.yaml#/x-interfaces/Team
       update:
         type: array
         items:
@@ -275,7 +552,7 @@ definitions:
             oneOf:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
+            - teams.yaml#/x-interfaces/Team
       delete:
         type: array
         items:
@@ -285,23 +562,21 @@ definitions:
             oneOf:
             - users.yaml#/x-interfaces/User
             - users.yaml#/x-interfaces/Group
-            - '#/x-interfaces/Team'
-  Team:
-    allOf:
-    - $ref: '#/definitions/PersistentResource'
+            - teams.yaml#/x-interfaces/Team
+  Apigee:
+    x-interface: '#/x-interfaces/Apigee'
+    readOnly: true
     properties:
-      kind:
+      permissions:
+        format: uri
         type: string
-        enum:
-        - Team
-      title:
-        type: string
-      users:
-        type: array
-        items:
-          type: string
-          format: uri
-          x-interface: users.yaml#/x-interfaces/User
+        readOnly: true
+        x-interface: '#/x-interfaces/Apigee.permissions'
+  MultiValuedRelationship:
+    readOnly: true
+    x-oneOf:
+    - $ref: '#/definitions/Collection'
+    - $ref: '#/definitions/Page'
   Resource:
     type: object
     properties:
@@ -413,6 +688,12 @@ parameters:
     required: true
     type: string
 responses:
+  '303':
+    description: See other. Server is redirecting client to a different resource
+    headers:
+      Location:
+        description: URL of other resource
+        type: string
   '400':
     description: Bad Request. Client request in error
     schema: {}
