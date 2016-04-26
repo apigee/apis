@@ -8,6 +8,167 @@ produces:
 - application/json
 - text/html
 x-interfaces:
+  ActionIsAllowed:
+    get:
+      description: Retrieve an ActionIsAllowed
+      parameters:
+      - description: "This query parameter specifies the \"governed\" resource whose\
+          \ ActionIsAllowed is returned \n"
+        format: uri
+        in: query
+        name: resource
+        required: true
+        type: string
+      - description: 'This query parameter specifies the user whose ActionIsAllowed
+          is returned. The requesting user must be the same as the specified user.
+
+          '
+        format: uri
+        in: query
+        name: user
+        required: true
+        type: string
+      - description: 'This query parameter specifies the action whose ActionIsAllowed
+          is returned. The requesting user must be the same as the specified user.
+
+          '
+        format: uri
+        in: query
+        name: action
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful
+          headers:
+            Content-Location:
+              description: perma-link URL of resource
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+            ETag:
+              description: this value must be echoed in the If-Match header of every
+                PATCH or PUT
+              type: string
+          schema:
+            $ref: '#/definitions/ActionIsAllowed'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
+      parameters:
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: ActionIsAllowed
+  AllowedActions:
+    get:
+      description: Retrieve an AllowedActions
+      parameters:
+      - description: "This query parameter specifies the \"governed\" resource whose\
+          \ AllowedActions are returned \n"
+        format: uri
+        in: query
+        name: resource
+        required: true
+        type: string
+      - description: 'This query parameter specifies the user whose AllowedActions
+          are returned. The requesting user must be the same as the specified user.
+
+          '
+        format: uri
+        in: query
+        name: user
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful
+          headers:
+            Content-Location:
+              description: perma-link URL of resource
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+            ETag:
+              description: this value must be echoed in the If-Match header of every
+                PATCH or PUT
+              type: string
+          schema:
+            $ref: '#/definitions/AllowedActions'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
+      parameters:
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: AllowedActions
   Apigee:
     get:
       description: Retrieve an Apigee
@@ -83,58 +244,12 @@ x-interfaces:
         name: direction
         required: false
         type: string
-      - description: "This query parameter is used to form the URL of a collection\
-          \ of permissions for a specified \"governed\" resource.  It will include\
-          \ the Permissions resource for the governed resurce itself, plus all the\
-          \ permissions resources of sharingSets that the governed resource is in,\
-          \ recursively. Only Permissions resources that the requesting user has permission\
-          \ to read will be included. \n"
-        format: uri
-        in: query
-        name: resource
-        required: true
-        type: string
       - in: query
         maximum: 1000
         minimum: 1
         name: limit
         required: false
         type: integer
-      - description: "This query parameter is used to form the URL of a collection\
-          \ of permissions for a specified \"governed\" resource and a specified user.\
-          \  The response will include the Permissions resource for the governed resource\
-          \ itself, plus all the permissions resources of sharingSets that the governed\
-          \ resource is in, recursively. Only permissions that reference the specified\
-          \ user, or a group that User is in will be included.  If the requesting\
-          \ user is different from the user specified in the paramter, only Permissions\
-          \ resources that the requesting user has permission to read will be included.\
-          \ If the requesting user is the same as the specified user, The request\
-          \ will return a \"pruned\" version of the Permissions resources showing\
-          \ the information pertinent to that user. \n"
-        format: uri
-        in: query
-        name: user
-        required: false
-        type: string
-      - description: 'This query parameter is used to form the URL of a collection
-          of permissions for a specified "governed" resource and a specified user.  The
-          response will include the Permissions resource for the governed resource
-          itself, plus all the permissions resources of sharingSets that the governed
-          resource is in, recursively. Only Permissions that reference the specified
-          user, or a group that User is in will be included.  If the requesting user
-          is different from the user specified in the parameter, only Permissions
-          resources that the requesting user has permission to read will be included.
-          If the requesting user is the same as the specified user, The response will
-          include only "pruned" versions of the Permissions resources showing the
-          information pertinent to that user. The rule is that users are always allowed
-          to see the portion of information in a Permission document that references
-          them, regardless of the genenral Permissions  on the Permission document.
-
-          '
-        in: query
-        name: action
-        required: false
-        type: string
       - in: query
         items:
           type: string
@@ -241,7 +356,6 @@ x-interfaces:
       - format: uri
         in: query
         name: sharingSet
-        required: true
         type: string
       responses:
         '200':
@@ -687,6 +801,10 @@ x-interfaces:
           $ref: '#/responses/default'
     x-id: Resource
 x-templates:
+  '{ActionIsAllowed-URL}':
+    $ref: '#/x-interfaces/ActionIsAllowed'
+  '{AllowedActions-URL}':
+    $ref: '#/x-interfaces/AllowedActions'
   '{Apigee-URL}':
     $ref: '#/x-interfaces/Apigee'
   '{Apigee-URL}/permissions':
@@ -698,6 +816,10 @@ x-templates:
   '{Apigee-URL}/users-who-can-see':
     $ref: users.yaml#/x-interfaces/Apigee.users-who-can-see
 paths:
+  /allowedActions:
+    $ref: '#/x-templates/{AllowedActions-URL}'
+  /actionIsAllowed:
+    $ref: '#/x-templates/{ActionIsAllowed-URL}'
   /:
     $ref: '#/x-templates/{Apigee-URL}'
   /permissions:
@@ -882,6 +1004,14 @@ definitions:
   ResourceList:
     description: A space-delimited list of URLs
     type: string
+  AllowedActions:
+    readOnly: true
+    type: string
+    x-interface: '#/x-interfaces/AllowedActions'
+  ActionIsAllowed:
+    readOnly: true
+    type: boolean
+    x-interface: '#/x-interfaces/ActionIsAllowed'
   Apigee:
     x-interface: '#/x-interfaces/Apigee'
     readOnly: true
