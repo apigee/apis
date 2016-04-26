@@ -115,7 +115,7 @@ entities:
     id: common.yaml#Apigee
     readOnly: true
     well_known_URLs: /
-    query_paths: permissions
+    query_paths: permissions resources-shared-with users-who-can-see
     properties:
       permissions:
         format: uri
@@ -151,4 +151,18 @@ entities:
             type: string
             format: uri
             required: true
-          
+      users-who-can-see:
+        format: uri
+        type: string
+        readOnly: true
+        relationship:
+          entities: users.yaml#User
+          multiplicity: 0:n
+          collection_resource: '#ResourceList'
+          readOnly: true
+          query_parameters:
+          - name: resource
+            type: string
+            format: uri
+            required: true
+            

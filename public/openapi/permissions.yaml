@@ -265,6 +265,68 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Apigee.resources-shared-with
+  Apigee.users-who-can-see:
+    get:
+      parameters:
+      - format: uri
+        in: query
+        name: resource
+        required: true
+        type: string
+      responses:
+        '200':
+          description: description
+          headers:
+            Content-Location:
+              description: perma-link URL of collection
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+          schema:
+            $ref: '#/definitions/ResourceList'
+        '303':
+          $ref: '#/responses/303'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: Retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    options:
+      description: Retrieve OPTIONS
+      parameters:
+      - $ref: '#/parameters/Access-Control-Request-Method'
+      - $ref: '#/parameters/Access-Control-Request-Headers'
+      responses:
+        '200':
+          $ref: '#/responses/options_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        default:
+          $ref: '#/responses/default'
+    x-id: Apigee.users-who-can-see
   Page:
     get:
       description: Retrieve a Page
@@ -535,11 +597,19 @@ x-templates:
     $ref: '#/x-interfaces/Apigee'
   '{Apigee-URL}/permissions':
     $ref: '#/x-interfaces/Apigee.permissions'
+  '{Apigee-URL}/resources-shared-with':
+    $ref: '#/x-interfaces/Apigee.resources-shared-with'
+  '{Apigee-URL}/users-who-can-see':
+    $ref: users.yaml#/x-interfaces/Apigee.users-who-can-see
 paths:
   /:
     $ref: '#/x-templates/{Apigee-URL}'
   /permissions:
     $ref: '#/x-templates/{Apigee-URL}~1permissions'
+  /resources-shared-with:
+    $ref: '#/x-templates/{Apigee-URL}~1resources-shared-with'
+  /users-who-can-see:
+    $ref: '#/x-templates/{Apigee-URL}~1users-who-can-see'
 definitions:
   Permissions:
     description: "<p>A Permissions resource contains one Permissions entity nested\
@@ -723,6 +793,11 @@ definitions:
         type: string
         readOnly: true
         x-interface: '#/x-interfaces/Apigee.resources-shared-with'
+      users-who-can-see:
+        format: uri
+        type: string
+        readOnly: true
+        x-interface: users.yaml#/x-interfaces/Apigee.users-who-can-see
   MultiValuedRelationship:
     readOnly: true
     x-oneOf:
