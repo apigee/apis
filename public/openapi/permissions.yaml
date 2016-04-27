@@ -821,7 +821,7 @@ x-templates:
   '{Apigee-URL}/resources-shared-with':
     $ref: '#/x-interfaces/Apigee.resources-shared-with'
   '{Apigee-URL}/users-who-can-see':
-    $ref: users.yaml#/x-interfaces/Apigee.users-who-can-see
+    $ref: '#/x-interfaces/Apigee.users-who-can-see'
 paths:
   /allowed-actions:
     $ref: '#/x-templates/{AllowedActions-URL}'
@@ -1037,7 +1037,7 @@ definitions:
         format: uri
         type: string
         readOnly: true
-        x-interface: users.yaml#/x-interfaces/Apigee.users-who-can-see
+        x-interface: '#/x-interfaces/Apigee.users-who-can-see'
       resources-in-sharingset:
         format: uri
         type: string
