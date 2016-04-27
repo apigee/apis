@@ -20,7 +20,7 @@ entities:
       governed resource. The Permissions service makes no assumptions about the sharingSet resources themselves—they may not even exist, even though their Permissions documents do.
       <p>
       The outer Permissions entity may have a `permissions` property whose value is a nested Permissions entity.
-      The nested Permissions entity specifies who can read, alter and delete the outer Permissions entity. 
+      The nested Permissions entity specifies who can read, alter and delete the entire Permission resource, including both Permissions entities. 
       The `governs` property of the nested Permissions entity will contain the URL of the outer Permissions entity. The
       nested Permissons entity does not have a sharingSet property, but instead uses the sharingSet value of the first Permissions 
       entity in its hierarchical search unioning permissions. When unioning permissions for the nested Permissions entity,
