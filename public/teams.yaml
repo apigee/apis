@@ -1,0 +1,32 @@
+id: https://apigee.com/apis/3
+title: Teams API
+entities:
+  Team:
+    allOf:
+    - $ref: common.yaml#/entities/PersistentResource
+    properties:
+      kind:
+        type: string
+        enum: [Team]
+      title:
+        type: string
+      users:
+        type: array
+        items:
+          type: string
+          format: uri
+          relationship: users.yaml#User      
+  Apigee:
+    id: common.yaml#Apigee
+    readOnly: true
+    well_known_URLs: /
+    query_paths: teams
+    properties:
+      teams:
+        format: uri
+        type: string
+        readOnly: true
+        relationship:
+          collection_resource: 'common.yaml/#MultiValuedRelationship'
+          multiplicity: 0:n
+          entities: '#Team'        
