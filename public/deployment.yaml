@@ -25,7 +25,7 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
           The value must always be the string "Environment". This property is always set 
           by the server in responses to GET. It must be set by the client on POST, 
@@ -97,10 +97,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "EnvironmentStartRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "EnvironmentStartRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [EnvironmentStartRequest]    
@@ -111,10 +111,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "EnvironmentStopRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "EnvironmentStopRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [EnvironmentRetirementRequest]    
@@ -125,10 +125,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "EnvironmentStopRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "EnvironmentStopRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [EnvironmentStopRequest]    
@@ -144,10 +144,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "Deployment". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "Deployment". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [Deployment]
@@ -222,10 +222,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind: 
+      isA: 
         description: >
-          This value must always be the string "DeploymentStartRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "DeploymentStartRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [DeploymentStartRequest]    
@@ -239,10 +239,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "DeploymentStopRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "DeploymentStopRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [DeploymentStopRequest]    
@@ -254,10 +254,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "DeploymentOfflineRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "DeploymentOfflineRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [DeploymentOfflineRequest]    
@@ -270,10 +270,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "DeploymentOnlineRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "DeploymentOnlineRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [DeploymentOnlineRequest]   
@@ -294,10 +294,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "DeploymentStatisticsRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "DeploymentStatisticsRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [DeploymentStatisticsRequest]
@@ -329,10 +329,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "DeploymentScalingRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "DeploymentScalingRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [DeploymentScalingRequest]  
@@ -346,10 +346,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          This value must always be the string "DeploymentRetirementRequest". The kind property is always set by 
-          the server in responses to GET. The kind property must be set by the client on POST, 
+          This value must always be the string "DeploymentRetirementRequest". The isA property is always set by 
+          the server in responses to GET. The isA property must be set by the client on POST, 
           and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [DeploymentRetirementRequest]    
@@ -360,10 +360,10 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         description: >
-          The value must always be the string "System". The kind property is always set by the server in responses to GET.
-          The kind property must be set by the client on POST, and must not be set by the client on PATCH. (PUT is not supported) 
+          The value must always be the string "System". The isA property is always set by the server in responses to GET.
+          The isA property must be set by the client on POST, and must not be set by the client on PATCH. (PUT is not supported) 
         type: string
         enum: [System]
       has_environments:
@@ -394,7 +394,7 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Component]
       is_component_of:
@@ -415,7 +415,7 @@ entities:
     allOf:
     - $ref: './common.yaml/#/entities/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Revision]
       revises:

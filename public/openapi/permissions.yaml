@@ -891,7 +891,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Permissions
@@ -955,7 +955,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Permissions

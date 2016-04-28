@@ -39,7 +39,7 @@ entities:
     allOf:
     - $ref: common.yaml#/entities/PersistentResource
     properties:
-      kind:
+      isA:
         type: string
         enum: [Permissions]
       governs:
@@ -83,7 +83,7 @@ entities:
     allOf:
     - $ref: common.yaml#/entities/Resource
     properties:
-      kind:
+      isA:
         type: string
         enum: [Permissions]
       governs:
