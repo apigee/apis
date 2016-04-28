@@ -119,42 +119,42 @@ entities:
     URI_templates:
       template: /allowed-actions{?resource,user}
       variables:
-      - name: resource
-        description: >
-          This query parameter specifies the "governed" resource whose AllowedActions are returned 
-        type: string
-        format: uri
-        required: true
-      - name: user
-        description: >
-          This query parameter specifies the user whose AllowedActions are returned. The requesting user must be the same as the specified user.
-        type: string
-        format: uri
-        required: true
+        resource:
+          description: >
+            This query parameter specifies the "governed" resource whose AllowedActions are returned 
+          type: string
+          format: uri
+          required: true
+        user:
+          description: >
+            This query parameter specifies the user whose AllowedActions are returned. The requesting user must be the same as the specified user.
+          type: string
+          format: uri
+          required: true
   ActionIsAllowed:
     readOnly: true
     type: boolean
     URI_templates:
       template: /action-is-allowed{?resource,user,action}
       variables:
-      - name: resource
-        description: >
-          This query parameter specifies the "governed" resource whose ActionIsAllowed is returned 
-        type: string
-        format: uri
-        required: true
-      - name: user
-        description: >
-          This query parameter specifies the user whose ActionIsAllowed is returned. The requesting user must be the same as the specified user.
-        type: string
-        format: uri
-        required: true
-      - name: action
-        description: >
-          This query parameter specifies the action whose ActionIsAllowed is returned. The requesting user must be the same as the specified user.
-        type: string
-        format: uri
-        required: true
+        resource:
+          description: >
+            This query parameter specifies the "governed" resource whose ActionIsAllowed is returned 
+          type: string
+          format: uri
+          required: true
+        user:
+          description: >
+            This query parameter specifies the user whose ActionIsAllowed is returned. The requesting user must be the same as the specified user.
+          type: string
+          format: uri
+          required: true
+        action:
+          description: >
+            This query parameter specifies the action whose ActionIsAllowed is returned. The requesting user must be the same as the specified user.
+          type: string
+          format: uri
+          required: true
   Apigee:
     id: common.yaml#Apigee
     readOnly: true

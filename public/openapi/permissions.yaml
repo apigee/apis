@@ -771,24 +771,50 @@ x-interfaces:
 x-templates:
   /action-is-allowed{?resource,user,action}:
     parameters:
-    - in: query
+    - description: "This query parameter specifies the \"governed\" resource whose\
+        \ ActionIsAllowed is returned \n"
+      type: string
+      format: uri
+      required: true
       name: resource
+      in: query
+    - description: 'This query parameter specifies the user whose ActionIsAllowed
+        is returned. The requesting user must be the same as the specified user.
+
+        '
       type: string
-    - in: query
+      format: uri
+      required: true
       name: user
+      in: query
+    - description: 'This query parameter specifies the action whose ActionIsAllowed
+        is returned. The requesting user must be the same as the specified user.
+
+        '
       type: string
-    - in: query
+      format: uri
+      required: true
       name: action
-      type: string
+      in: query
     <<: *ActionIsAllowed
   /allowed-actions{?resource,user}:
     parameters:
-    - in: query
+    - description: "This query parameter specifies the \"governed\" resource whose\
+        \ AllowedActions are returned \n"
+      type: string
+      format: uri
+      required: true
       name: resource
+      in: query
+    - description: 'This query parameter specifies the user whose AllowedActions are
+        returned. The requesting user must be the same as the specified user.
+
+        '
       type: string
-    - in: query
+      format: uri
+      required: true
       name: user
-      type: string
+      in: query
     <<: *AllowedActions
   '{Apigee-URL}':
     $ref: '#/x-interfaces/Apigee'
