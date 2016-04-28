@@ -8,35 +8,11 @@ produces:
 - application/json
 - text/html
 x-interfaces:
-  ActionIsAllowed:
+  ActionIsAllowed: &ActionIsAllowed
     get:
       description: Retrieve an ActionIsAllowed
       parameters:
-      - description: "This query parameter specifies the \"governed\" resource whose\
-          \ ActionIsAllowed is returned \n"
-        format: uri
-        in: query
-        name: resource
-        required: true
-        type: string
-      - description: 'This query parameter specifies the user whose ActionIsAllowed
-          is returned. The requesting user must be the same as the specified user.
-
-          '
-        format: uri
-        in: query
-        name: user
-        required: true
-        type: string
-      - description: 'This query parameter specifies the action whose ActionIsAllowed
-          is returned. The requesting user must be the same as the specified user.
-
-          '
-        format: uri
-        in: query
-        name: action
-        required: true
-        type: string
+      - $ref: '#/parameters/Accept'
       responses:
         '200':
           description: successful
@@ -93,26 +69,11 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: ActionIsAllowed
-  AllowedActions:
+  AllowedActions: &AllowedActions
     get:
       description: Retrieve an AllowedActions
       parameters:
-      - description: "This query parameter specifies the \"governed\" resource whose\
-          \ AllowedActions are returned \n"
-        format: uri
-        in: query
-        name: resource
-        required: true
-        type: string
-      - description: 'This query parameter specifies the user whose AllowedActions
-          are returned. The requesting user must be the same as the specified user.
-
-          '
-        format: uri
-        in: query
-        name: user
-        required: true
-        type: string
+      - $ref: '#/parameters/Accept'
       responses:
         '200':
           description: successful
@@ -808,10 +769,27 @@ x-interfaces:
           $ref: '#/responses/default'
     x-id: Resource
 x-templates:
-  '{ActionIsAllowed-URL}':
-    $ref: '#/x-interfaces/ActionIsAllowed'
-  '{AllowedActions-URL}':
-    $ref: '#/x-interfaces/AllowedActions'
+  /action-is-allowed{?resource,user,action}:
+    parameters:
+    - in: query
+      name: resource
+      type: string
+    - in: query
+      name: user
+      type: string
+    - in: query
+      name: action
+      type: string
+    <<: *ActionIsAllowed
+  /allowed-actions{?resource,user}:
+    parameters:
+    - in: query
+      name: resource
+      type: string
+    - in: query
+      name: user
+      type: string
+    <<: *AllowedActions
   '{Apigee-URL}':
     $ref: '#/x-interfaces/Apigee'
   '{Apigee-URL}/permissions':
@@ -824,9 +802,9 @@ x-templates:
     $ref: '#/x-interfaces/Apigee.users-who-can-see'
 paths:
   /allowed-actions:
-    $ref: '#/x-templates/{AllowedActions-URL}'
+    $ref: '#/x-templates/~1allowed-actions{?resource,user}'
   /action-is-allowed:
-    $ref: '#/x-templates/{ActionIsAllowed-URL}'
+    $ref: '#/x-templates/~1action-is-allowed{?resource,user,action}'
   /:
     $ref: '#/x-templates/{Apigee-URL}'
   /permissions:
@@ -1014,11 +992,9 @@ definitions:
   AllowedActions:
     readOnly: true
     type: string
-    x-interface: '#/x-interfaces/AllowedActions'
   ActionIsAllowed:
     readOnly: true
     type: boolean
-    x-interface: '#/x-interfaces/ActionIsAllowed'
   Apigee:
     x-interface: '#/x-interfaces/Apigee'
     readOnly: true
