@@ -170,12 +170,12 @@ entities:
           multiplicity: 0:n
           entities: '#Permissions'        
           query_parameters:
-          - name: resource
-            description: >
-              This query parameter specifies the "governed" resource whose Permissions reosurce is returned 
-            type: string
-            format: uri
-            required: true
+            resource:
+              description: >
+                This query parameter specifies the "governed" resource whose Permissions reosurce is returned 
+              type: string
+              format: uri
+              required: true
       resources-shared-with:
         format: uri
         type: string
@@ -186,10 +186,10 @@ entities:
           collection_resource: '#ResourceList'
           readOnly: true
           query_parameters:
-          - name: user
-            type: string
-            format: uri
-            required: true
+            user:
+              type: string
+              format: uri
+              required: true
       users-who-can-see:
         format: uri
         type: string
@@ -200,10 +200,10 @@ entities:
           collection_resource: '#ResourceList'
           readOnly: true
           query_parameters:
-          - name: resource
-            type: string
-            format: uri
-            required: true
+            resource:
+              type: string
+              format: uri
+              required: true
       resources-in-sharingset:
         format: uri
         type: string
@@ -214,7 +214,7 @@ entities:
           collection_resource: '#ResourceList'
           readOnly: true
           query_parameters:
-          - name: sharingSet
-            type: string
-            format: uri
+            sharingSet:
+              type: string
+              format: uri
                         
