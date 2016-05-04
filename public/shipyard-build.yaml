@@ -4,7 +4,7 @@ conventions:
 entities:
   Apigee:
     readOnly: true
-    well_known_URLs: /
+    wellKnownURLs: /
     query_paths: images namespaces namespaces;{name} namespaces;{name}/applications namespaces;{name}/applications;{name} namespaces;{name}/applications;{name}/images
     properties:
       images:

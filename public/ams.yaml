@@ -106,7 +106,7 @@ entities:
       isA:
         description: The value of this property indicates the 'kind' or 'type' of the object. Its value must be the string "APIProduct"
         type: string
-        enum: [APIProduct]
+        enum: [Bundle]
         usage: c r
       name:
         description: >
@@ -234,7 +234,7 @@ entities:
   Apigee:
     id: common.yaml#Apigee
     readOnly: true
-    well_known_URLs: /
+    wellKnownURLs: /
     query_paths: apiProducts apis subscriptions bundles
     properties:
       apiProducts:

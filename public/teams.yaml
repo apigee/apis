@@ -19,7 +19,7 @@ entities:
   Apigee:
     id: common.yaml#Apigee
     readOnly: true
-    well_known_URLs: /
+    wellKnownURLs: /
     query_paths: teams
     properties:
       teams:

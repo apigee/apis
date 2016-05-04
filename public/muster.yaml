@@ -27,7 +27,7 @@ entities:
             type: array
             format: uri
             required: false
-    well_known_URLs: /system
+    wellKnownURLs: /system
     query_paths: 
     - groups
     readOnly: true

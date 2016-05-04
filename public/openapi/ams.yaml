@@ -1354,7 +1354,7 @@ definitions:
           the object. Its value must be the string "APIProduct"
         type: string
         enum:
-        - APIProduct
+        - Bundle
       name:
         description: 'The name of the Bundle. Must be unique amongst Bundles of the
           same org.  The name of the Bundle, along with the name of the org, may be

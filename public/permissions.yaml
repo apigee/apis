@@ -158,7 +158,7 @@ entities:
   Apigee:
     id: common.yaml#Apigee
     readOnly: true
-    well_known_URLs: /
+    wellKnownURLs: /
     query_paths: permissions resources-shared-with users-who-can-see resources-in-sharingset
     properties:
       permissions:
