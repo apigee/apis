@@ -116,7 +116,7 @@ entities:
   AllowedActions:
     readOnly: true
     type: string
-    URI_templates:
+    uriTemplates:
       template: /allowed-actions{?resource,user}
       variables:
         resource:
@@ -134,7 +134,7 @@ entities:
   ActionIsAllowed:
     readOnly: true
     type: boolean
-    URI_templates:
+    uriTemplates:
       template: /action-is-allowed{?resource,user,action}
       variables:
         resource:
