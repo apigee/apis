@@ -235,7 +235,7 @@ entities:
     id: common.yaml#Apigee
     readOnly: true
     wellKnownURLs: /
-    query_paths: apiProducts apis subscriptions bundles
+    queryPaths: apiProducts apis subscriptions bundles
     properties:
       apiProducts:
         format: uri

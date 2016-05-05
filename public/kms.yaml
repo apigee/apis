@@ -4,7 +4,7 @@ conventions:
 entities:
   Apigee:
     wellKnownURLs: /
-    query_paths: 
+    queryPaths: 
     - organizations 
     - organizations;{name} 
     - organizations;{name}/environments 

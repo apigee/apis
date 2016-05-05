@@ -159,7 +159,7 @@ entities:
     id: common.yaml#Apigee
     readOnly: true
     wellKnownURLs: /
-    query_paths: permissions resources-shared-with users-who-can-see resources-in-sharingset
+    queryPaths: permissions resources-shared-with users-who-can-see resources-in-sharingset
     properties:
       permissions:
         format: uri
@@ -169,7 +169,7 @@ entities:
           collectionResource: 'common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Permissions'        
-          query_parameters:
+          queryParameters:
             resource:
               description: >
                 This query parameter specifies the "governed" resource whose Permissions reosurce is returned 
@@ -185,7 +185,7 @@ entities:
           multiplicity: 0:n
           collectionResource: '#ResourceList'
           readOnly: true
-          query_parameters:
+          queryParameters:
             user:
               type: string
               format: uri
@@ -199,7 +199,7 @@ entities:
           multiplicity: 0:n
           collectionResource: '#ResourceList'
           readOnly: true
-          query_parameters:
+          queryParameters:
             resource:
               type: string
               format: uri
@@ -213,7 +213,7 @@ entities:
           multiplicity: 0:n
           collectionResource: '#ResourceList'
           readOnly: true
-          query_parameters:
+          queryParameters:
             sharingSet:
               type: string
               format: uri

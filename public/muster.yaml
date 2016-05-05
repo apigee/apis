@@ -22,13 +22,13 @@ entities:
           collectionResource: '#MultiValuedRelationshipResource'
           entities: '#Group'
           multiplicity: O:n
-          query_parameters:
+          queryParameters:
           - name: folder
             type: array
             format: uri
             required: false
     wellKnownURLs: /system
-    query_paths: 
+    queryPaths: 
     - groups
     readOnly: true
   Group:
@@ -86,7 +86,7 @@ entities:
         relationship:
           entities: '#Page'
           readOnly: True
-    query_parameters:
+    queryParameters:
     - name: properties
       items:
         type: string
@@ -110,7 +110,7 @@ entities:
         type: array
         items: 
           type: object
-    query_parameters:
+    queryParameters:
     - name: properties
       items:
         type: string

@@ -20,7 +20,7 @@ entities:
     id: common.yaml#Apigee
     readOnly: true
     wellKnownURLs: /
-    query_paths: teams
+    queryPaths: teams
     properties:
       teams:
         format: uri
