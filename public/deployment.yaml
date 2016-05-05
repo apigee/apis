@@ -7,7 +7,7 @@ description: >
 consumes: application/json
 produces: application/json text/html
 conventions:
-  patch_consumes: application/merge-patch+json
+  patchConsumes: application/merge-patch+json
   error_response:
     type: string
 entities:
