@@ -1,6 +1,6 @@
 title: API for building docker images
 conventions:
-  error_response: '#Error'
+  errorResponse: '#Error'
 entities:
   Apigee:
     readOnly: true
