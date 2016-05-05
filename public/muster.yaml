@@ -19,7 +19,7 @@ entities:
         format: uri
         type: string        
         relationship:
-          collection_resource: '#MultiValuedRelationshipResource'
+          collectionResource: '#MultiValuedRelationshipResource'
           entities: '#Group'
           multiplicity: O:n
           query_parameters:

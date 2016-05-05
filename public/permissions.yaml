@@ -166,7 +166,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: 'common.yaml/#MultiValuedRelationship'
+          collectionResource: 'common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Permissions'        
           query_parameters:
@@ -183,7 +183,7 @@ entities:
         relationship:
           entities: '#Resource'
           multiplicity: 0:n
-          collection_resource: '#ResourceList'
+          collectionResource: '#ResourceList'
           readOnly: true
           query_parameters:
             user:
@@ -197,7 +197,7 @@ entities:
         relationship:
           entities: users.yaml#User
           multiplicity: 0:n
-          collection_resource: '#ResourceList'
+          collectionResource: '#ResourceList'
           readOnly: true
           query_parameters:
             resource:
@@ -211,7 +211,7 @@ entities:
         relationship:
           entities: '#Resource'
           multiplicity: 0:n
-          collection_resource: '#ResourceList'
+          collectionResource: '#ResourceList'
           readOnly: true
           query_parameters:
             sharingSet:

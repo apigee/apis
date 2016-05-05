@@ -49,7 +49,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Deployment'
       domain_name:
@@ -87,7 +87,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#EnvironmentStartRequest #EnvironmentStopRequest #EnvironmentRetirementRequest'  
   EnvironmentStartRequest:
@@ -209,7 +209,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: > 
             #DeploymentStartRequest #DeploymentStopRequest #DeploymentOnlineRequest #DeploymentOfflineRequest 
@@ -375,7 +375,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Environment'
       has_components:
@@ -383,7 +383,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Component'
   Component:
@@ -406,7 +406,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Revision'
   Revision:
@@ -427,7 +427,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Deployment'        
   StatisticsResults:
@@ -447,7 +447,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#System'        
       environments:
@@ -455,7 +455,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Environment'        
       components:
@@ -463,7 +463,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Component'        
       revisions:
@@ -471,7 +471,7 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collection_resource: './common.yaml/#MultiValuedRelationship'
+          collectionResource: './common.yaml/#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Revision'
 securityDefinitions:

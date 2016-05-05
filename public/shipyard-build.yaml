@@ -15,7 +15,7 @@ entities:
         relationship:
           entities: '#Image'
           multiplicity: 0:n
-          collection_resource: ./common.yaml#MultiValuedRelationship
+          collectionResource: ./common.yaml#MultiValuedRelationship
           consumes: multi-part/form-data
       namespaces:
         description: >
@@ -26,7 +26,7 @@ entities:
           readOnly: true
           entities: '#Namespace'
           multiplicity: 0:n
-          collection_resource: ./common.yaml#MultiValuedRelationship
+          collectionResource: ./common.yaml#MultiValuedRelationship
       builds:
         description: >
           The list of all namspaces. New namespaces are created by posting an image that references them.
@@ -105,7 +105,7 @@ entities:
           readOnly: true
           entities: '#Application'
           multiplicity: 0:n
-          collection_resource: ./common.yaml#MultiValuedRelationship
+          collectionResource: ./common.yaml#MultiValuedRelationship
   Application:
     description: >
       Applications group together images that are related to the same piece of software.  Applications are created implicitly by POSTing an image that references the new application.
@@ -124,7 +124,7 @@ entities:
           readOnly: true
           entities: '#Image'
           multiplicity: 0:n
-          collection_resource: ./common.yaml#MultiValuedRelationship
+          collectionResource: ./common.yaml#MultiValuedRelationship
   Error:
     readOnly: true
     properties:
