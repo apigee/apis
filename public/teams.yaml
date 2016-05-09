@@ -1,5 +1,12 @@
 id: https://apigee.com/apis/3
 title: Teams API
+description: >
+  The teams API allows for the creation and management of teams. Teams are simple lists of Users.
+  teams are conceptually very similar to the SCIM groups provided by SSO2, except that they have a different access control model.
+  The access control model for Teams is described in 
+  <a href="https://docs.google.com/a/apigee.com/document/d/1PCniPha6wmPwAkJbA6Bn1dH6a7QTsHZ4xsSFBvAXS3A/edit?usp=sharing">this document</a>.
+  This access control model allows Teams to be created without special permissions.
+  The API for Permissions is <a href="permissions.html">here</a>.
 entities:
   Team:
     allOf:

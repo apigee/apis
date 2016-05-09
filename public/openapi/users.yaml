@@ -1,5 +1,9 @@
 swagger: '2.0'
 info:
+  description: "The Users API is a Rapier proxy for the SSO2 API. The entities it\
+    \ describes are User and Group. We may never implement the Users API\u2014we may\
+    \ simply program to the SSO2 (SCIM) interface. In that case, we may change the\
+    \ Rapier files to treat URLs of users as simple URLs, not relationships. \n"
   title: Users API
   version: initial
 consumes:

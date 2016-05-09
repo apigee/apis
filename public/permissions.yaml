@@ -85,7 +85,7 @@ entities:
     properties:
       isA:
         type: string
-        enum: [Permissions]
+        enum: [Permissions] # Not a typo. It is still a Permissions entity
       governs:
         type: string
         format: uri
