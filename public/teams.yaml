@@ -34,6 +34,6 @@ entities:
         type: string
         readOnly: true
         relationship:
-          collectionResource: 'common.yaml/#MultiValuedRelationship'
+          collectionResource: 'common.yaml#MultiValuedRelationship'
           multiplicity: 0:n
           entities: '#Team'        
