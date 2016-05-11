@@ -3,7 +3,7 @@ version: "0.1"
 consumes: application/json
 produces: application/json text/html
 conventions:
-  queryPathSelectorLocation: path-segment
+  queryPathSelectorLocation: pathSegment
   patchConsumes: application/merge-patch+json
   errorResponse:
     type: string

@@ -1,6 +1,6 @@
 title: KMS APIs
 conventions:
-  queryPathSelectorLocation: path-segment
+  queryPathSelectorLocation: pathSegment
 entities:
   Apigee:
     wellKnownURLs: /
