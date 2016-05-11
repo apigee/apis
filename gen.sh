@@ -10,7 +10,7 @@ gen_openapispec.py public/permissions.yaml > public/openapi/permissions.yaml
 gen_openapispec.py public/teams.yaml > public/openapi/teams.yaml 
 gen_openapispec.py public/users.yaml > public/openapi/users.yaml 
 gen_openapispec.py public/mint.yaml > public/openapi/mint.yaml 
-gen_openapispec.py public/mint.yaml > public/openapi/docstore.yaml 
+gen_openapispec.py public/docstore.yaml > public/openapi/docstore.yaml 
 
 # gen html
 gen_html.py public/ams.yaml > public/html/ams.html 

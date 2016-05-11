@@ -3,6 +3,7 @@ version: "0.1"
 consumes: application/json
 produces: application/json text/html
 conventions:
+  queryPathSelectorLocation: path-segment
   patchConsumes: application/merge-patch+json
   errorResponse:
     type: string
@@ -15,33 +16,19 @@ securityDefinitions:
 security:
 - sso: []
 entities:
-  Store:
+  Apigee:
     allOf:
-    - $ref: '#/entities/Resource'
+    - $ref: 'common.yaml#/entities/Resource'
     properties:
       kind:
         type: string
-        enum: [Store]
-      home:
-        description: URL of the current user's 'home' Folder
-        format: uri
-        type: string
-        relationship: '#Folder'
-      sharedWithMe:
-        description: URL of a Collection of Folders and Docs
-        format: uri
-        type: string
-        relationship:
-          collectionResource: '#MultiValuedRelationshipResource'
-          entities: '#Folder #Doc'
-          multiplicity: 0:n
-          readOnly: true
+        enum: [Apigee]
       docs:
         description: URL of a Collection of Docs
         format: uri
         type: string        
         relationship:
-          collectionResource: '#MultiValuedRelationshipResource'
+          collectionResource: 'common.yaml#MultiValuedRelationship'
           entities: '#Doc'
           multiplicity: 0:n
       folders:
@@ -49,29 +36,47 @@ entities:
         format: uri
         type: string        
         relationship:
-          collectionResource: '#MultiValuedRelationshipResource'
+          collectionResource: 'common.yaml#MultiValuedRelationship'
           entities: '#Folder'
           multiplicity: 0:n
-      groups:
-        description: URL of a Collection of Groups
+      teams:
+        description: URL of a Collection of Teams
         format: uri
         type: string        
         relationship:
-          collectionResource: '#MultiValuedRelationshipResource'
-          entities: '#Group'
+          collectionResource: 'common.yaml#MultiValuedRelationship'
+          entities: '#Team'
           multiplicity: 0:n
-    wellKnownURLs: /store
+      sharedWithMe:
+        description: URL of a Collection of Folders and Docs
+        format: uri
+        type: string
+        relationship:
+          collectionResource: 'common.yaml#MultiValuedRelationship'
+          entities: '#Folder #Doc'
+          multiplicity: 0:n
+          readOnly: true
+      trash:
+        description: URL of a Collection of Folders and Docs
+        format: uri
+        type: string
+        relationship:
+          collectionResource: 'common.yaml#MultiValuedRelationship'
+          entities: '#Folder #Doc'
+          multiplicity: 0:n
+          readOnly: true
+    wellKnownURLs: /
     queryPaths: 
-    - home
-    - home/contents
-    - sharedWithMe
     - docs
     - folders
-    - groups
+    - sharedWithMe
+    - trash
+    - teams
     readOnly: true
   Folder:
     allOf:
-    - $ref: '#/entities/PersistentResource'
+    - $ref: 'common.yaml#/entities/PersistentResource'
+    wellKnownURLs: /homeFolder
     queryPaths: [contents]
     properties:
       contents:
@@ -80,8 +85,8 @@ entities:
         readOnly: true
         type: string
         relationship:
-          collectionResource: '#MultiValuedRelationshipResource'
-          entities: '#Doc #Folder'
+          collectionResource: 'common.yaml#MultiValuedRelationship'
+          entities: '#Doc #Folder #Team'
           multiplicity: 0:n
       folder:
         description: URL of a Folder
@@ -96,15 +101,10 @@ entities:
       permissions:
         type: array
         items: 
-          properties:
-            actor:
-              format: URL
-              type: string
-            action:
-              type: string
+          $ref: '#/entities/Permission'
   Doc:
     allOf:
-    - $ref: '#/entities/PersistentResource'
+    - $ref: 'common.yaml#/entities/PersistentResource'
     queryPaths: [content]
     properties:
       content_type:
@@ -128,153 +128,43 @@ entities:
       permissions:
         type: array
         items: 
-          properties:
-            actor:
-              format: URL
-              type: string
-            action:
-              type: string
-  Group:
+          $ref: '#/entities/Permission'
+  Content:
+    type: string
+    consumes: application/x-yaml text/yaml text/html text/plain
+    produces: application/x-yaml text/yaml text/html text/plain
+  Team:
     allOf:
-    - $ref: '#/entities/PersistentResource'
+    - $ref: common.yaml#/entities/PersistentResource
     properties:
-      members:
-        description: Array of URLs of Users
+      kind:
+        type: string
+        enum: [Team]
+      title:
+        type: string
+      users:
         type: array
         items:
           type: string
           format: uri
+          relationship: users.yaml#User      
       folder:
         description: URL of a Folder
         format: uri
         type: string
         relationship: '#Folder'
-      kind:
-        type: string
-        enum: [Group]
-      name:
-        type: string
       permissions:
         type: array
         items: 
-          properties:
-            actor:
-              format: URL
-              type: string
-            action:
-              type: string
-  Content:
-    type: string
-    consumes: application/x-yaml text/yaml text/html text/plain
-    produces: application/x-yaml text/yaml text/html text/plain
-  Page:
-    allOf:
-    - $ref: '#/entities/Resource'
+          $ref: '#/entities/Permission'
+  Permission: 
     properties:
-      kind:
-        type: string
-        enum: [Page]
-      items:
-        type: array
-        items: 
-          type: object
-      collection:
-        type: string
-        format: uri
-      next_page:
-        type: string
-        format: uri
-        relationship:
-          entities: '#Page'
-          readOnly: True
-      previous_page:
-        type: string
-        format: uri
-        relationship:
-          entities: '#Page'
-          readOnly: True
-    queryParameters:
-      properties:
-        items:
-          type: string
-        type: array
-        required: false
-      limit:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        required: false
-    readOnly: true
-  Collection:
-    allOf:
-    - $ref: '#/entities/Resource'
-    properties:
-      kind:
-        type: string
-        enum: [Collection]
-      items:
-        type: array
-        items: 
-          type: object
-    queryParameters:
-      properties:
-        items : 
-          type: string
-        type: array
-        required: false
-      limit:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        required: false
-      orderBy: # required if limit is provided
-        type: string
-        required: false
-      direction:
-        type: string
-        required: false
-        enum: ['ascending', 'descending']
-    readOnly: true
-  MultiValuedRelationshipResource:
-    readOnly: true
-    oneOf:
-      - $ref: '#/entities/Collection'
-      - $ref: '#/entities/Page'
-  Resource:
-    type: object
-    properties:
-      _self:
-        type: string
-        readOnly: true
-      kind:
-        type: string
-  PersistentResource:
-    allOf:
-    - $ref: '#/entities/Resource'
-    properties:
-      created:
-        type: string
-        format: date-time
-        readOnly: true
-      creator:
-        type: string
+      actor:
         format: URL
-        readOnly: true
-      modified:
         type: string
-        format: date-time
-        readOnly: true
-      modifier:
-        type: string
-        format: date-time
-        readOnly: true
+      action:
+        type: string  
 implementationPrivateInformation:
-  Group:
-    permalinkTemplate:
-      template: /c3Rvc-Z3Jw-{implementation_key} 
-      variables:
-        implementation_key:
-          type: integer
   Doc:
     permalinkTemplate:
       template: /c3Rvc-ZG9j-{implementation_key} 
