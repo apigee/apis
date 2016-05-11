@@ -954,6 +954,36 @@ x-interfaces:
           $ref: '#/responses/409'
         default:
           $ref: '#/responses/default'
+    delete:
+      description: Delete a Folder
+      responses:
+        '200':
+          description: successful
+          headers:
+            Content-Location:
+              description: perma-link URL of resource
+              type: string
+            Content-Type:
+              description: The media type of the returned body
+              type: string
+            ETag:
+              description: this value must be echoed in the If-Match header of every
+                PATCH or PUT
+              type: string
+          schema:
+            $ref: '#/definitions/Folder'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '406':
+          $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
     head:
       description: retrieve HEAD
       responses:
@@ -1321,6 +1351,10 @@ x-templates:
     $ref: '#/x-interfaces/Apigee.docs'
   '{Apigee-URL}/folders':
     $ref: '#/x-interfaces/Apigee.folders'
+  '{Apigee-URL}/homeFolder':
+    $ref: '#/x-interfaces/Folder'
+  '{Apigee-URL}/homeFolder/contents':
+    $ref: '#/x-interfaces/Folder.contents'
   '{Apigee-URL}/sharedWithMe':
     $ref: '#/x-interfaces/Apigee.sharedWithMe'
   '{Apigee-URL}/teams':
@@ -1329,8 +1363,6 @@ x-templates:
     $ref: '#/x-interfaces/Apigee.trash'
   '{Doc-URL}/content':
     $ref: '#/x-interfaces/Content'
-  '{Folder-URL}':
-    $ref: '#/x-interfaces/Folder'
   '{Folder-URL}/contents':
     $ref: '#/x-interfaces/Folder.contents'
 paths:
@@ -1347,9 +1379,9 @@ paths:
   /trash:
     $ref: '#/x-templates/{Apigee-URL}~1trash'
   /homeFolder:
-    $ref: '#/x-templates/{Folder-URL}'
+    $ref: '#/x-templates/{Apigee-URL}~1homeFolder'
   /homeFolder/contents:
-    $ref: '#/x-templates/{Folder-URL}~1contents'
+    $ref: '#/x-templates/{Apigee-URL}~1homeFolder~1contents'
 definitions:
   ErrorResponse:
     type: string
@@ -1386,6 +1418,11 @@ definitions:
         format: uri
         type: string
         x-interface: '#/x-interfaces/Apigee.trash'
+      homeFolder:
+        description: alias URL of the home folder of the current user
+        format: uri
+        type: string
+        x-interface: '#/x-interfaces/Folder'
     readOnly: true
     x-interface: '#/x-interfaces/Apigee'
   Folder:

@@ -65,6 +65,11 @@ entities:
           entities: '#Folder #Doc'
           multiplicity: 0:n
           readOnly: true
+      homeFolder:
+        description: alias URL of the home folder of the current user
+        format: uri
+        type: string
+        relationship: '#Folder'
     wellKnownURLs: /
     queryPaths: 
     - docs
@@ -72,11 +77,12 @@ entities:
     - sharedWithMe
     - trash
     - teams
+    - homeFolder
+    - homeFolder/contents
     readOnly: true
   Folder:
     allOf:
     - $ref: 'common.yaml#/entities/PersistentResource'
-    wellKnownURLs: /homeFolder
     queryPaths: [contents]
     properties:
       contents:
