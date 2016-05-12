@@ -11,6 +11,7 @@ gen_openapispec.py public/teams.yaml > public/openapi/teams.yaml
 gen_openapispec.py public/users.yaml > public/openapi/users.yaml 
 gen_openapispec.py public/mint.yaml > public/openapi/mint.yaml 
 gen_openapispec.py public/docstore1607.yaml > public/openapi/docstore1607.yaml 
+gen_openapispec.py -i public/docstore1607.yaml > public/openapi/docstore1607-impl.yaml 
 
 # gen html
 gen_html.py public/ams.yaml > public/html/ams.html 

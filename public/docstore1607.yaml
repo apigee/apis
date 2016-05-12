@@ -66,7 +66,7 @@ entities:
           multiplicity: 0:n
           readOnly: true
       homeFolder:
-        description: alias URL of the home folder of the current user
+        description: URL of the home folder of the current user (user that issues the request)
         format: uri
         type: string
         relationship: '#Folder'

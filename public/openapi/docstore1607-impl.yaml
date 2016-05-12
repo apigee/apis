@@ -1,3 +1,8 @@
+x-description: '*** This document is not a specification of an API. This document
+  includes implementation-specific additions and modifications to an API that are
+  designed to aid implementation-aware software like proxies and implementation frameworks.
+  If you are looking for the API specification, find the version that was generated
+  without implementation extensions and modifications'
 swagger: '2.0'
 info:
   title: Doc Store API
@@ -26,6 +31,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Apigee'
@@ -105,6 +116,12 @@ x-interfaces:
             Content-Type:
               description: The media type of the returned body
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/MultiValuedRelationship'
         '303':
@@ -144,6 +161,12 @@ x-interfaces:
               type: string
             Location:
               description: perma-link URL of newly-created Doc
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Doc'
@@ -225,6 +248,12 @@ x-interfaces:
             Content-Type:
               description: The media type of the returned body
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/MultiValuedRelationship'
         '303':
@@ -264,6 +293,12 @@ x-interfaces:
               type: string
             Location:
               description: perma-link URL of newly-created Folder
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Folder'
@@ -345,6 +380,12 @@ x-interfaces:
             Content-Type:
               description: The media type of the returned body
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/MultiValuedRelationship'
         '303':
@@ -425,6 +466,12 @@ x-interfaces:
             Content-Type:
               description: The media type of the returned body
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/MultiValuedRelationship'
         '303':
@@ -464,6 +511,12 @@ x-interfaces:
               type: string
             Location:
               description: perma-link URL of newly-created Team
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Team'
@@ -545,6 +598,12 @@ x-interfaces:
             Content-Type:
               description: The media type of the returned body
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/MultiValuedRelationship'
         '303':
@@ -589,7 +648,7 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Apigee.trash
-  Content:
+  Content: &Content
     get:
       description: Retrieve a Content
       parameters:
@@ -612,6 +671,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Content'
@@ -657,6 +722,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Content'
@@ -706,6 +777,12 @@ x-interfaces:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/Content'
         '400':
@@ -750,7 +827,7 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Content
-  Doc:
+  Doc: &Doc
     get:
       description: Retrieve a Doc
       parameters:
@@ -768,6 +845,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Doc'
@@ -806,6 +889,12 @@ x-interfaces:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/Doc'
         '400':
@@ -837,6 +926,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Doc'
@@ -882,7 +977,7 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Doc
-  Folder:
+  Folder: &Folder
     get:
       description: Retrieve a Folder
       parameters:
@@ -900,6 +995,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Folder'
@@ -938,6 +1039,12 @@ x-interfaces:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/Folder'
         '400':
@@ -969,6 +1076,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Folder'
@@ -1014,7 +1127,7 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Folder
-  Folder.contents:
+  Folder.contents: &Folder-contents
     get:
       parameters:
       - in: query
@@ -1049,6 +1162,12 @@ x-interfaces:
               type: string
             Content-Type:
               description: The media type of the returned body
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/MultiValuedRelationship'
@@ -1092,6 +1211,12 @@ x-interfaces:
               type: string
             Location:
               description: perma-link URL of newly-created Doc or Folder or Team
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             x-oneOf:
@@ -1170,6 +1295,12 @@ x-interfaces:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/Page'
         '401':
@@ -1231,6 +1362,12 @@ x-interfaces:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/Team'
         '401':
@@ -1268,6 +1405,12 @@ x-interfaces:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
               type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
+              type: string
           schema:
             $ref: '#/definitions/Team'
         '400':
@@ -1299,6 +1442,12 @@ x-interfaces:
             ETag:
               description: this value must be echoed in the If-Match header of every
                 PATCH or PUT
+              type: string
+            Vary:
+              description: Make sure a cache of one content type is not returned to
+                a client wanting a different one.
+              enum:
+              - Accept
               type: string
           schema:
             $ref: '#/definitions/Team'
@@ -1361,8 +1510,12 @@ x-templates:
     $ref: '#/x-interfaces/Apigee.teams'
   '{Apigee-URL}/trash':
     $ref: '#/x-interfaces/Apigee.trash'
+  '{Doc-URL}':
+    $ref: '#/x-interfaces/Doc'
   '{Doc-URL}/content':
     $ref: '#/x-interfaces/Content'
+  '{Folder-URL}':
+    $ref: '#/x-interfaces/Folder'
   '{Folder-URL}/contents':
     $ref: '#/x-interfaces/Folder.contents'
 paths:
@@ -1382,6 +1535,50 @@ paths:
     $ref: '#/x-templates/{Apigee-URL}~1homeFolder'
   /homeFolder/contents:
     $ref: '#/x-templates/{Apigee-URL}~1homeFolder~1contents'
+  /c3Rvc-Zmxk-{implementation_key}:
+    x-description: '*** This path is not part of the API - it is an implementation-private
+      extension'
+    parameters:
+    - description: This parameter is a private part of the implementation. It is not
+        part of the API
+      in: path
+      name: implementation_key
+      required: true
+      type: integer
+    <<: *Folder
+  /c3Rvc-Zmxk-{implementation_key}/contents:
+    x-description: '*** This path is not part of the API - it is an implementation-private
+      extension'
+    parameters:
+    - description: This parameter is a private part of the implementation. It is not
+        part of the API
+      in: path
+      name: implementation_key
+      required: true
+      type: integer
+    <<: *Folder-contents
+  /c3Rvc-ZG9j-{implementation_key}:
+    x-description: '*** This path is not part of the API - it is an implementation-private
+      extension'
+    parameters:
+    - description: This parameter is a private part of the implementation. It is not
+        part of the API
+      in: path
+      name: implementation_key
+      required: true
+      type: integer
+    <<: *Doc
+  /c3Rvc-ZG9j-{implementation_key}/content:
+    x-description: '*** This path is not part of the API - it is an implementation-private
+      extension'
+    parameters:
+    - description: This parameter is a private part of the implementation. It is not
+        part of the API
+      in: path
+      name: implementation_key
+      required: true
+      type: integer
+    <<: *Content
 definitions:
   ErrorResponse:
     type: string
