@@ -183,3 +183,9 @@ implementationPrivateInformation:
       variables:
         implementation_key:
           type: integer  
+  Team:
+    permalinkTemplate:
+      template: /c3Rvc-dGVh-{implementation_key} 
+      variables:
+        implementation_key:
+          type: integer 

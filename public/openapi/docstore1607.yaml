@@ -95,6 +95,10 @@ x-interfaces:
         name: properties
         required: false
         type: array
+      - in: query
+        name: showAll
+        required: false
+        type: boolean
       responses:
         '200':
           description: description
@@ -215,6 +219,10 @@ x-interfaces:
         name: properties
         required: false
         type: array
+      - in: query
+        name: showAll
+        required: false
+        type: boolean
       responses:
         '200':
           description: description
@@ -335,6 +343,10 @@ x-interfaces:
         name: properties
         required: false
         type: array
+      - in: query
+        name: showAll
+        required: false
+        type: boolean
       responses:
         '200':
           description: description
@@ -415,6 +427,10 @@ x-interfaces:
         name: properties
         required: false
         type: array
+      - in: query
+        name: showAll
+        required: false
+        type: boolean
       responses:
         '200':
           description: description
@@ -535,6 +551,10 @@ x-interfaces:
         name: properties
         required: false
         type: array
+      - in: query
+        name: showAll
+        required: false
+        type: boolean
       responses:
         '200':
           description: description
@@ -1040,6 +1060,10 @@ x-interfaces:
         name: properties
         required: false
         type: array
+      - in: query
+        name: showAll
+        required: false
+        type: boolean
       responses:
         '200':
           description: description
@@ -1516,6 +1540,11 @@ definitions:
         type: string
       action:
         type: string
+  MultiValuedRelationship:
+    readOnly: true
+    x-oneOf:
+    - $ref: '#/definitions/Collection'
+    - $ref: '#/definitions/Page'
   Resource:
     type: object
     properties:
@@ -1563,24 +1592,6 @@ definitions:
         type: string
         format: date-time
         readOnly: true
-  MultiValuedRelationship:
-    readOnly: true
-    x-oneOf:
-    - $ref: '#/definitions/Collection'
-    - $ref: '#/definitions/Page'
-  Collection:
-    allOf:
-    - $ref: '#/definitions/Resource'
-    properties:
-      isA:
-        type: string
-        enum:
-        - Collection
-      items:
-        type: array
-        items:
-          type: object
-    readOnly: true
   Page:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -1606,6 +1617,19 @@ definitions:
         x-interface: common.yaml#/x-interfaces/Page
     readOnly: true
     x-interface: common.yaml#/x-interfaces/Page
+  Collection:
+    allOf:
+    - $ref: '#/definitions/Resource'
+    properties:
+      isA:
+        type: string
+        enum:
+        - Collection
+      items:
+        type: array
+        items:
+          type: object
+    readOnly: true
 parameters:
   Accept:
     description: specifies the requested media type - required

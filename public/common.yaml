@@ -57,6 +57,9 @@ entities:
         items: 
           type: object
     queryParameters:
+      showAll:
+        type: boolean
+        required: false
       properties:
         items:
           type: string
