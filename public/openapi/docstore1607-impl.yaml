@@ -1367,7 +1367,7 @@ x-interfaces:
         default:
           $ref: '#/responses/default'
     x-id: Page
-  Team:
+  Team: &Team
     get:
       description: Retrieve a Team
       parameters:
@@ -1542,6 +1542,8 @@ x-templates:
     $ref: '#/x-interfaces/Folder'
   '{Folder-URL}/contents':
     $ref: '#/x-interfaces/Folder.contents'
+  '{Team-URL}':
+    $ref: '#/x-interfaces/Team'
 paths:
   /:
     $ref: '#/x-templates/{Apigee-URL}'
@@ -1603,6 +1605,17 @@ paths:
       required: true
       type: integer
     <<: *Content
+  /c3Rvc-dGVh-{implementation_key}:
+    x-description: '*** This path is not part of the API - it is an implementation-private
+      extension'
+    parameters:
+    - description: This parameter is a private part of the implementation. It is not
+        part of the API
+      in: path
+      name: implementation_key
+      required: true
+      type: integer
+    <<: *Team
 definitions:
   ErrorResponse:
     type: string
