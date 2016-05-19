@@ -20,7 +20,7 @@ entities:
     allOf:
     - $ref: 'common.yaml#/entities/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum: [Apigee]
       docs:
@@ -100,7 +100,7 @@ entities:
         format: uri
         type: string
         relationship: '#Folder'
-      kind:
+      isA:
         type: string
         enum: [Folder]
       name:
@@ -129,7 +129,7 @@ entities:
         format: uri
         type: string
         relationship: '#Folder'
-      kind:
+      isA:
         type: string
         enum: [Doc]
         usage: c r
@@ -147,7 +147,7 @@ entities:
     allOf:
     - $ref: common.yaml#/entities/PersistentResource
     properties:
-      kind:
+      isA:
         type: string
         enum: [Team]
         usage: c r

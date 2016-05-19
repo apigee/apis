@@ -1534,7 +1534,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/Resource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Apigee
@@ -1586,7 +1586,7 @@ definitions:
         format: uri
         type: string
         x-interface: '#/x-interfaces/Folder'
-      kind:
+      isA:
         type: string
         enum:
         - Folder
@@ -1616,7 +1616,7 @@ definitions:
         format: uri
         type: string
         x-interface: '#/x-interfaces/Folder'
-      kind:
+      isA:
         type: string
         enum:
         - Doc
@@ -1634,7 +1634,7 @@ definitions:
     allOf:
     - $ref: '#/definitions/PersistentResource'
     properties:
-      kind:
+      isA:
         type: string
         enum:
         - Team
