@@ -94,6 +94,7 @@ entities:
           collectionResource: 'common.yaml#MultiValuedRelationship'
           entities: '#Doc #Folder #Team'
           multiplicity: 0:n
+          readOnly: true
       folder:
         description: URL of a Folder
         format: uri
@@ -116,11 +117,13 @@ entities:
       content_type:
         description: The media type of the content of the Doc
         type: string
+        readOnly: true
       content:
         description: URL of a Content
         format: uri
         type: string
         relationship: '#Content'
+        readOnly: true
       folder:
         description: URL of a Folder
         format: uri
@@ -129,6 +132,7 @@ entities:
       kind:
         type: string
         enum: [Doc]
+        usage: c r
       name:
         type: string
       permissions:
@@ -146,7 +150,8 @@ entities:
       kind:
         type: string
         enum: [Team]
-      title:
+        usage: c r
+      name:
         type: string
       users:
         type: array

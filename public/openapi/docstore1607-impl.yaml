@@ -1183,58 +1183,6 @@ x-interfaces:
           $ref: '#/responses/406'
         default:
           $ref: '#/responses/default'
-    post:
-      description: Create a new Doc or Folder or Team
-      parameters:
-      - description: The representation of the new Doc or Folder or Team being created
-        in: body
-        name: body
-        schema:
-          x-oneOf:
-          - $ref: '#/definitions/Doc'
-          - $ref: '#/definitions/Folder'
-          - $ref: '#/definitions/Team'
-      - description: The media type of the body
-        in: header
-        name: Content-Type
-        required: true
-        type: string
-      responses:
-        '201':
-          description: Created new Doc or Folder or Team
-          headers:
-            Content-Type:
-              description: The media type of the returned body
-              type: string
-            ETag:
-              description: Value of ETag required for subsequent updates
-              type: string
-            Location:
-              description: perma-link URL of newly-created Doc or Folder or Team
-              type: string
-            Vary:
-              description: Make sure a cache of one content type is not returned to
-                a client wanting a different one.
-              enum:
-              - Accept
-              type: string
-          schema:
-            x-oneOf:
-            - $ref: '#/definitions/Doc'
-            - $ref: '#/definitions/Folder'
-            - $ref: '#/definitions/Team'
-        '400':
-          $ref: '#/responses/400'
-        '401':
-          $ref: '#/responses/401'
-        '403':
-          $ref: '#/responses/403'
-        '404':
-          $ref: '#/responses/404'
-        '406':
-          $ref: '#/responses/406'
-        default:
-          $ref: '#/responses/default'
     head:
       description: Retrieve HEAD
       responses:
@@ -1656,11 +1604,13 @@ definitions:
       content_type:
         description: The media type of the content of the Doc
         type: string
+        readOnly: true
       content:
         description: URL of a Content
         format: uri
         type: string
         x-interface: '#/x-interfaces/Content'
+        readOnly: true
       folder:
         description: URL of a Folder
         format: uri
@@ -1688,7 +1638,7 @@ definitions:
         type: string
         enum:
         - Team
-      title:
+      name:
         type: string
       users:
         type: array
