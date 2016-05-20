@@ -14,7 +14,7 @@ entities:
       isA:
         type: string
         enum: [Page]
-      items:
+      contents:
         type: array
         items: 
           type: object
@@ -52,7 +52,7 @@ entities:
       isA:
         type: string
         enum: [Collection]
-      items:
+      contents:
         type: array
         items: 
           type: object

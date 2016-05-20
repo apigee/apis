@@ -1531,7 +1531,7 @@ definitions:
         type: string
         enum:
         - Collection
-      items:
+      contents:
         type: array
         items:
           type: object
@@ -1544,7 +1544,7 @@ definitions:
         type: string
         enum:
         - Page
-      items:
+      contents:
         type: array
         items:
           type: object
