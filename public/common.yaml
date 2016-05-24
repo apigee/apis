@@ -90,7 +90,7 @@ entities:
           concept. It is similar to the @id property of RDF/JSON. It is permissible, although unusual, to update the value of _self.
         type: string
         format: uri
-        readOnly: true
+        usage: c r u
       isA:
         description: >
           Specifies the type of the entity. We avoid the word type because it's a global function in some programing languages, and we don't want name collisions. isA is usually set by the 

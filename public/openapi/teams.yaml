@@ -523,7 +523,6 @@ definitions:
           \ It is permissible, although unusual, to update the value of _self.\n"
         type: string
         format: uri
-        readOnly: true
       isA:
         description: "Specifies the type of the entity. We avoid the word type because\
           \ it's a global function in some programing languages, and we don't want\
