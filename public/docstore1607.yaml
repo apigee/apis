@@ -31,6 +31,7 @@ entities:
           collectionResource: 'common.yaml#MultiValuedRelationship'
           entities: '#Doc'
           multiplicity: 0:n
+          usage: c # We do not currently support GET
       folders:
         description: URL of a Collection of Folders
         format: uri
@@ -39,6 +40,7 @@ entities:
           collectionResource: 'common.yaml#MultiValuedRelationship'
           entities: '#Folder'
           multiplicity: 0:n
+          usage: c # We do not currently support GET
       teams:
         description: URL of a Collection of Teams
         format: uri
@@ -47,6 +49,7 @@ entities:
           collectionResource: 'common.yaml#MultiValuedRelationship'
           entities: '#Team'
           multiplicity: 0:n
+          usage: c # We do not currently support GET
       sharedWithMe:
         description: URL of a Collection of Folders and Docs
         format: uri
