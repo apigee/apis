@@ -85,6 +85,9 @@ entities:
     - $ref: 'common.yaml#/entities/PersistentResource'
     queryPaths: [contents]
     properties:
+      description:
+        description: A description of the Folder. Natural-language text that may include whitespace. Expected to be a relatively short phrase or sentence.
+        type: string
       contents:
         description: URL of a Collection of Docs and Folders
         format: uri
@@ -114,10 +117,9 @@ entities:
     - $ref: 'common.yaml#/entities/PersistentResource'
     queryPaths: [content]
     properties:
-      content_type:
-        description: The media type of the content of the Doc
+      description:
+        description: A description of the Document. Natural-language text that may include whitespace. Expected to be a relatively short phrase or sentence.
         type: string
-        readOnly: true
       content:
         description: URL of a Content
         format: uri
