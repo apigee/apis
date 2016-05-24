@@ -53,6 +53,7 @@ x-interfaces:
       - description: The subset of properties of the API being updated
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/API'
       responses:
@@ -185,6 +186,7 @@ x-interfaces:
       - description: The subset of properties of the APIProduct being updated
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/APIProduct'
       responses:
@@ -394,6 +396,7 @@ x-interfaces:
       - description: The representation of the new APIProduct being created
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/APIProduct'
       - description: The media type of the body
@@ -514,6 +517,7 @@ x-interfaces:
       - description: The representation of the new API being created
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/API'
       - description: The media type of the body
@@ -634,6 +638,7 @@ x-interfaces:
       - description: The representation of the new Bundle being created
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Bundle'
       - description: The media type of the body
@@ -754,6 +759,7 @@ x-interfaces:
       - description: The representation of the new Subscription being created
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Subscription'
       - description: The media type of the body
@@ -858,6 +864,7 @@ x-interfaces:
       - description: The subset of properties of the Bundle being updated
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Bundle'
       responses:
@@ -1062,6 +1069,7 @@ x-interfaces:
       - description: The subset of properties of the Subscription being updated
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Subscription'
       responses:
@@ -1574,6 +1582,7 @@ definitions:
           \ It is permissible, although unusual, to update the value of _self.\n"
         type: string
         format: uri
+        readOnly: true
       isA:
         description: "Specifies the type of the entity. We avoid the word type because\
           \ it's a global function in some programing languages, and we don't want\

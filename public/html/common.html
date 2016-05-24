@@ -133,14 +133,14 @@
                     <td>The _self property defines which resource's property-value pairs are in the data. On create, if no value for _self is given, _self will be set to the URL of the resource being created. It is possible to set a different value on create—this is used to create a resource that contans information about a different resource than it_self. _self specifies RDF's 'subject' concept. It is similar to the @id property of RDF/JSON. It is permissible, although unusual, to update the value of _self.
 </td>
                     <td>uri                    </td>
-                    <td>c r u                    </td>
+                    <td>r                    </td>
                   </tr>
                   <tr>
                     <td>isA</td>
                     <td>Specifies the type of the entity. We avoid the word type because it's a global function in some programing languages, and we don't want name collisions. isA is usually set by the  client and then echo'd by the server. In most applications, isA is immutable after create, although some applications may allow change. 
 </td>
                     <td>string                    </td>
-                    <td>c r u                    </td>
+                    <td>c r                    </td>
                   </tr>
                 </tbody>
               </table>            </td>

@@ -76,6 +76,7 @@ x-interfaces:
       - description: The representation of the new Doc being created
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Doc'
       - description: The media type of the body
@@ -134,6 +135,7 @@ x-interfaces:
       - description: The representation of the new Folder being created
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Folder'
       - description: The media type of the body
@@ -272,6 +274,7 @@ x-interfaces:
       - description: The representation of the new Team being created
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Team'
       - description: The media type of the body
@@ -451,6 +454,7 @@ x-interfaces:
       - description: The representation of the Content being replaced
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Content'
       produces:
@@ -604,6 +608,7 @@ x-interfaces:
       - description: The subset of properties of the Doc being updated
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Doc'
       responses:
@@ -736,6 +741,7 @@ x-interfaces:
       - description: The subset of properties of the Folder being updated
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Folder'
       responses:
@@ -1020,6 +1026,7 @@ x-interfaces:
       - description: The subset of properties of the Team being updated
         in: body
         name: body
+        required: true
         schema:
           $ref: '#/definitions/Team'
       responses:
@@ -1303,6 +1310,7 @@ definitions:
           \ It is permissible, although unusual, to update the value of _self.\n"
         type: string
         format: uri
+        readOnly: true
       isA:
         description: "Specifies the type of the entity. We avoid the word type because\
           \ it's a global function in some programing languages, and we don't want\

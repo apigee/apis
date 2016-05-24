@@ -90,13 +90,13 @@ entities:
           concept. It is similar to the @id property of RDF/JSON. It is permissible, although unusual, to update the value of _self.
         type: string
         format: uri
-        usage: c r u
+        readOnly: true
       isA:
         description: >
           Specifies the type of the entity. We avoid the word type because it's a global function in some programing languages, and we don't want name collisions. isA is usually set by the 
           client and then echo'd by the server. In most applications, isA is immutable after create, although some applications may allow change. 
         type: string
-        usage: c r u
+        usage: c r # Allowing the type of something to be changed is unusual
   PersistentResource:
     allOf:
     - $ref: '#/entities/Resource'
