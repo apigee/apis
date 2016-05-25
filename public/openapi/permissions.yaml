@@ -198,13 +198,6 @@ x-interfaces:
         name: orderBy
         required: false
         type: string
-      - enum:
-        - ascending
-        - descending
-        in: query
-        name: direction
-        required: false
-        type: string
       - description: "This query parameter specifies the \"governed\" resource whose\
           \ Permissions reosurce is returned \n"
         format: uri
@@ -212,16 +205,19 @@ x-interfaces:
         name: resource
         required: true
         type: string
+      - enum:
+        - ascending
+        - descending
+        in: query
+        name: direction
+        required: false
+        type: string
       - in: query
         maximum: 1000
         minimum: 1
         name: limit
         required: false
         type: integer
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       - in: query
         items:
           type: string

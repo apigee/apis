@@ -94,6 +94,10 @@ entities:
           collectionResource: 'common.yaml#MultiValuedRelationship'
           entities: '#Doc #Folder #Team'
           multiplicity: 0:n
+          queryParameters:
+            includeTrash:
+              type: boolean
+              required: false
       folder:
         description: URL of a Folder
         format: uri

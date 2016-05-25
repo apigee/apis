@@ -103,10 +103,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -227,10 +223,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -351,10 +343,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -475,10 +463,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -731,10 +715,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -987,10 +967,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -2051,10 +2027,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -2175,10 +2147,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -2912,10 +2880,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -3229,10 +3193,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
@@ -3353,10 +3313,6 @@ x-interfaces:
         name: properties
         required: false
         type: array
-      - in: query
-        name: showAll
-        required: false
-        type: boolean
       responses:
         '200':
           description: description
