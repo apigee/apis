@@ -76,7 +76,6 @@ x-interfaces:
       - description: The representation of the new Build being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Build'
       - description: The media type of the body
@@ -109,6 +108,19 @@ x-interfaces:
           $ref: '#/responses/404'
         '406':
           $ref: '#/responses/406'
+        default:
+          $ref: '#/responses/default'
+    head:
+      description: Retrieve HEAD
+      responses:
+        '200':
+          $ref: '#/responses/standard_200'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
         default:
           $ref: '#/responses/default'
     options:
@@ -186,7 +198,6 @@ x-interfaces:
       - description: The representation of the new Image being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Image'
       - description: The media type of the body
@@ -1024,6 +1035,11 @@ definitions:
         type: array
         items:
           type: string
+  MultiValuedRelationship:
+    readOnly: true
+    x-oneOf:
+    - $ref: '#/definitions/Collection'
+    - $ref: '#/definitions/Page'
   Resource:
     type: object
     properties:
@@ -1044,11 +1060,6 @@ definitions:
           \ the server. In most applications, isA is immutable after create, although\
           \ some applications may allow change. \n"
         type: string
-  MultiValuedRelationship:
-    readOnly: true
-    x-oneOf:
-    - $ref: '#/definitions/Collection'
-    - $ref: '#/definitions/Page'
   PersistentResource:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -1076,19 +1087,6 @@ definitions:
         type: string
         format: date-time
         readOnly: true
-  Collection:
-    allOf:
-    - $ref: '#/definitions/Resource'
-    properties:
-      isA:
-        type: string
-        enum:
-        - Collection
-      contents:
-        type: array
-        items:
-          type: object
-    readOnly: true
   Page:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -1114,6 +1112,19 @@ definitions:
         x-interface: common.yaml#/x-interfaces/Page
     readOnly: true
     x-interface: common.yaml#/x-interfaces/Page
+  Collection:
+    allOf:
+    - $ref: '#/definitions/Resource'
+    properties:
+      isA:
+        type: string
+        enum:
+        - Collection
+      contents:
+        type: array
+        items:
+          type: object
+    readOnly: true
 parameters:
   Accept:
     description: specifies the requested media type - required

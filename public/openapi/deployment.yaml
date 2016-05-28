@@ -133,7 +133,6 @@ x-interfaces:
       - description: The representation of the new Component being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Component'
       - description: The media type of the body
@@ -254,7 +253,6 @@ x-interfaces:
       - description: The representation of the new Environment being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Environment'
       - description: The media type of the body
@@ -375,7 +373,6 @@ x-interfaces:
       - description: The representation of the new Revision being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Revision'
       - description: The media type of the body
@@ -496,7 +493,6 @@ x-interfaces:
       - description: The representation of the new System being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/System'
       - description: The media type of the body
@@ -601,7 +597,6 @@ x-interfaces:
       - description: The subset of properties of the Component being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Component'
       responses:
@@ -750,7 +745,6 @@ x-interfaces:
       - description: The representation of the new Revision being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Revision'
       - description: The media type of the body
@@ -855,7 +849,6 @@ x-interfaces:
       - description: The subset of properties of the Deployment being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Deployment'
       responses:
@@ -1008,7 +1001,6 @@ x-interfaces:
           or DeploymentScalingRequest or DeploymentRetirementRequest being created
         in: body
         name: body
-        required: true
         schema:
           x-oneOf:
           - $ref: '#/definitions/DeploymentStartRequest'
@@ -1132,7 +1124,6 @@ x-interfaces:
           updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/DeploymentOfflineRequest'
       responses:
@@ -1266,7 +1257,6 @@ x-interfaces:
           updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/DeploymentOnlineRequest'
       responses:
@@ -1400,7 +1390,6 @@ x-interfaces:
           updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/DeploymentRetirementRequest'
       responses:
@@ -1595,7 +1584,6 @@ x-interfaces:
           updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/DeploymentStartRequest'
       responses:
@@ -1789,7 +1777,6 @@ x-interfaces:
       - description: The subset of properties of the DeploymentStopRequest being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/DeploymentStopRequest'
       responses:
@@ -1922,7 +1909,6 @@ x-interfaces:
       - description: The subset of properties of the Environment being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Environment'
       responses:
@@ -2071,7 +2057,6 @@ x-interfaces:
       - description: The representation of the new Deployment being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Deployment'
       - description: The media type of the body
@@ -2194,7 +2179,6 @@ x-interfaces:
           or EnvironmentRetirementRequest being created
         in: body
         name: body
-        required: true
         schema:
           x-oneOf:
           - $ref: '#/definitions/EnvironmentStartRequest'
@@ -2308,7 +2292,6 @@ x-interfaces:
           being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/EnvironmentRetirementRequest'
       responses:
@@ -2442,7 +2425,6 @@ x-interfaces:
           updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/EnvironmentStartRequest'
       responses:
@@ -2576,7 +2558,6 @@ x-interfaces:
           updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/EnvironmentStopRequest'
       responses:
@@ -2781,7 +2762,6 @@ x-interfaces:
       - description: The subset of properties of the Revision being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Revision'
       responses:
@@ -2930,7 +2910,6 @@ x-interfaces:
       - description: The representation of the new Deployment being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Deployment'
       - description: The media type of the body
@@ -3096,7 +3075,6 @@ x-interfaces:
       - description: The subset of properties of the System being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/System'
       responses:
@@ -3245,7 +3223,6 @@ x-interfaces:
       - description: The representation of the new Component being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Component'
       - description: The media type of the body
@@ -3366,7 +3343,6 @@ x-interfaces:
       - description: The representation of the new Environment being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Environment'
       - description: The media type of the body
@@ -3987,19 +3963,26 @@ definitions:
         type: string
         format: date-time
         readOnly: true
-  Collection:
-    allOf:
-    - $ref: '#/definitions/Resource'
+  Resource:
+    type: object
     properties:
-      isA:
+      _self:
+        description: "The _self property defines which resource's property-value pairs\
+          \ are in the data. On create, if no value for _self is given, _self will\
+          \ be set to the URL of the resource being created. It is possible to set\
+          \ a different value on create\u2014this is used to create a resource that\
+          \ contans information about a different resource than it_self. _self specifies\
+          \ RDF's 'subject' concept. It is similar to the @id property of RDF/JSON.\
+          \ It is permissible, although unusual, to update the value of _self.\n"
         type: string
-        enum:
-        - Collection
-      contents:
-        type: array
-        items:
-          type: object
-    readOnly: true
+        format: uri
+      isA:
+        description: "Specifies the type of the entity. We avoid the word type because\
+          \ it's a global function in some programing languages, and we don't want\
+          \ name collisions. isA is usually set by the  client and then echo'd by\
+          \ the server. In most applications, isA is immutable after create, although\
+          \ some applications may allow change. \n"
+        type: string
   Page:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -4025,26 +4008,19 @@ definitions:
         x-interface: common.yaml#/x-interfaces/Page
     readOnly: true
     x-interface: common.yaml#/x-interfaces/Page
-  Resource:
-    type: object
+  Collection:
+    allOf:
+    - $ref: '#/definitions/Resource'
     properties:
-      _self:
-        description: "The _self property defines which resource's property-value pairs\
-          \ are in the data. On create, if no value for _self is given, _self will\
-          \ be set to the URL of the resource being created. It is possible to set\
-          \ a different value on create\u2014this is used to create a resource that\
-          \ contans information about a different resource than it_self. _self specifies\
-          \ RDF's 'subject' concept. It is similar to the @id property of RDF/JSON.\
-          \ It is permissible, although unusual, to update the value of _self.\n"
-        type: string
-        format: uri
       isA:
-        description: "Specifies the type of the entity. We avoid the word type because\
-          \ it's a global function in some programing languages, and we don't want\
-          \ name collisions. isA is usually set by the  client and then echo'd by\
-          \ the server. In most applications, isA is immutable after create, although\
-          \ some applications may allow change. \n"
         type: string
+        enum:
+        - Collection
+      contents:
+        type: array
+        items:
+          type: object
+    readOnly: true
 parameters:
   Accept:
     description: specifies the requested media type - required
