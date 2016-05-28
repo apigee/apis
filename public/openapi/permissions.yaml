@@ -254,7 +254,6 @@ x-interfaces:
       - description: The representation of the new Permissions being created
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Permissions'
       - description: The media type of the body
@@ -616,7 +615,6 @@ x-interfaces:
       - description: The subset of properties of the Permissions being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/Permissions'
       responses:
@@ -1079,19 +1077,6 @@ definitions:
         type: string
         format: date-time
         readOnly: true
-  Collection:
-    allOf:
-    - $ref: '#/definitions/Resource'
-    properties:
-      isA:
-        type: string
-        enum:
-        - Collection
-      contents:
-        type: array
-        items:
-          type: object
-    readOnly: true
   Page:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -1117,6 +1102,19 @@ definitions:
         x-interface: common.yaml#/x-interfaces/Page
     readOnly: true
     x-interface: common.yaml#/x-interfaces/Page
+  Collection:
+    allOf:
+    - $ref: '#/definitions/Resource'
+    properties:
+      isA:
+        type: string
+        enum:
+        - Collection
+      contents:
+        type: array
+        items:
+          type: object
+    readOnly: true
 parameters:
   Accept:
     description: specifies the requested media type - required

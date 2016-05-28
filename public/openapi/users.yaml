@@ -52,7 +52,6 @@ x-interfaces:
       - description: The subset of properties of the User being updated
         in: body
         name: body
-        required: true
         schema:
           $ref: '#/definitions/User'
       responses:
@@ -191,19 +190,26 @@ definitions:
         type: string
         format: date-time
         readOnly: true
-  Collection:
-    allOf:
-    - $ref: '#/definitions/Resource'
+  Resource:
+    type: object
     properties:
-      isA:
+      _self:
+        description: "The _self property defines which resource's property-value pairs\
+          \ are in the data. On create, if no value for _self is given, _self will\
+          \ be set to the URL of the resource being created. It is possible to set\
+          \ a different value on create\u2014this is used to create a resource that\
+          \ contans information about a different resource than it_self. _self specifies\
+          \ RDF's 'subject' concept. It is similar to the @id property of RDF/JSON.\
+          \ It is permissible, although unusual, to update the value of _self.\n"
         type: string
-        enum:
-        - Collection
-      contents:
-        type: array
-        items:
-          type: object
-    readOnly: true
+        format: uri
+      isA:
+        description: "Specifies the type of the entity. We avoid the word type because\
+          \ it's a global function in some programing languages, and we don't want\
+          \ name collisions. isA is usually set by the  client and then echo'd by\
+          \ the server. In most applications, isA is immutable after create, although\
+          \ some applications may allow change. \n"
+        type: string
   Page:
     allOf:
     - $ref: '#/definitions/Resource'
@@ -229,26 +235,19 @@ definitions:
         x-interface: common.yaml#/x-interfaces/Page
     readOnly: true
     x-interface: common.yaml#/x-interfaces/Page
-  Resource:
-    type: object
+  Collection:
+    allOf:
+    - $ref: '#/definitions/Resource'
     properties:
-      _self:
-        description: "The _self property defines which resource's property-value pairs\
-          \ are in the data. On create, if no value for _self is given, _self will\
-          \ be set to the URL of the resource being created. It is possible to set\
-          \ a different value on create\u2014this is used to create a resource that\
-          \ contans information about a different resource than it_self. _self specifies\
-          \ RDF's 'subject' concept. It is similar to the @id property of RDF/JSON.\
-          \ It is permissible, although unusual, to update the value of _self.\n"
-        type: string
-        format: uri
       isA:
-        description: "Specifies the type of the entity. We avoid the word type because\
-          \ it's a global function in some programing languages, and we don't want\
-          \ name collisions. isA is usually set by the  client and then echo'd by\
-          \ the server. In most applications, isA is immutable after create, although\
-          \ some applications may allow change. \n"
         type: string
+        enum:
+        - Collection
+      contents:
+        type: array
+        items:
+          type: object
+    readOnly: true
 parameters:
   Accept:
     description: specifies the requested media type - required
