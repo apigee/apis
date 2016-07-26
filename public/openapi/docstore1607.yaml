@@ -1184,12 +1184,12 @@ definitions:
         type: string
         x-interface: '#/x-interfaces/Apigee.teams'
       sharedWithMe:
-        description: URL of a Collection of Folders and Docs
+        description: URL of a Collection of Folders and Docs and Teams
         format: uri
         type: string
         x-interface: '#/x-interfaces/Apigee.sharedWithMe'
       trash:
-        description: URL of a Collection of Folders and Docs
+        description: URL of a Collection of Folders and Docs and Teams
         format: uri
         type: string
         x-interface: '#/x-interfaces/Apigee.trash'
@@ -1210,7 +1210,7 @@ definitions:
           whitespace. Expected to be a relatively short phrase or sentence.
         type: string
       contents:
-        description: URL of a Collection of Docs and Folders
+        description: URL of a Collection of Docs and Folders and Teams
         format: uri
         readOnly: true
         type: string
@@ -1491,4 +1491,3 @@ securityDefinitions:
     tokenUrl: whatever
 security:
 - sso: []
-
